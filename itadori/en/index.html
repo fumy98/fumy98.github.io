@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>イタドリ − 木材カット計算 | 刃厚まで計算する板取りアプリ</title>
-<meta name="description" content="手持ちの定尺材と必要な部材の寸法を入れるだけで、刃厚まで含めた無駄の少ない切断図を返す iPhone アプリ。通信ゼロ・アカウントゼロ・買い切り。">
+<title>Itadori − Cut List Optimizer | Kerf-aware cut lists for iPhone</title>
+<meta name="description" content="Enter the stock you have and the parts you need. Itadori returns a cutting diagram that accounts for blade kerf. Fractional inches, works offline, one-time purchase.">
 <style>
   :root {
     --bg: #ffffff;
@@ -179,7 +179,7 @@
   @media (max-width: 640px) { .pricing { grid-template-columns: 1fr; } }
   .plan { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
   .plan.pro { border: 2px solid var(--pro); position: relative; }
-  .plan.pro::after { content: "買い切り"; position: absolute; top: -12px; right: 20px; background: var(--pro); color: #fff; font-size: .75rem; font-weight: 700; padding: 3px 12px; border-radius: 999px; }
+  .plan.pro::after { content: "One-time"; position: absolute; top: -12px; right: 20px; background: var(--pro); color: #fff; font-size: .75rem; font-weight: 700; padding: 3px 12px; border-radius: 999px; }
   .plan .price { font-size: 2.2rem; font-weight: 800; margin: 6px 0 2px; }
   .plan .price small { font-size: .9rem; font-weight: 500; color: var(--muted); }
   .plan ul { list-style: none; padding: 0; margin: 18px 0 0; }
@@ -224,14 +224,13 @@
   <div class="wrap">
     <a class="brand" href="#">
       <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M4 8h16M4 12h16M4 16h16"/><path d="M9 5v14M15 5v14" stroke-dasharray="2 2"/></svg></span>
-      イタドリ
+      Itadori
     </a>
     <nav>
-      <a href="#features">機能</a>
-      <a href="#demo">試す</a>
-      <a href="#pricing">価格</a>
-      <a href="#faq">FAQ</a>
-      <a href="en/" lang="en">English</a>
+      <a href="#features">Features</a>
+      <a href="#demo">Try it</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a><a href="../" lang="ja">日本語</a>
     </nav>
   </div>
 </header>
@@ -239,41 +238,41 @@
 <section class="hero">
   <div class="wrap grid">
     <div>
-      <span class="eyebrow">iPhone 向け 木材カット計算</span>
-      <h1>刃厚まで計算する、<br><em>失敗しない</em>板取りアプリ</h1>
-      <p class="lead">手持ちの定尺材と必要な部材の寸法を入れるだけ。丸ノコの刃厚（約 3mm）まで含めた、無駄の少ない切断図を返します。</p>
+      <span class="eyebrow">Cut list optimizer for iPhone</span>
+      <h1>Cut lists that <em>count the kerf</em>,<br>so the last piece is never short</h1>
+      <p class="lead">Enter the stock you have and the parts you need, in fractional inches or millimeters. Itadori returns a cutting diagram that subtracts the saw blade (about 1/8 in) at every cut.</p>
       <div class="badges">
-        <span class="badge">通信ゼロ</span>
-        <span class="badge">アカウント不要</span>
-        <span class="badge">買い切り ¥900</span>
-        <span class="badge">iOS 17 以降</span>
+        <span class="badge">Works offline</span>
+        <span class="badge">No account</span>
+        <span class="badge">One-time $9.99</span>
+        <span class="badge">iOS 17 or later</span>
       </div>
       <div class="cta">
         <a class="btn primary" href="#pricing">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
-          App Store で入手
+          Get it on the App Store
         </a>
-        <a class="btn ghost" href="#demo">ブラウザで計算を試す</a>
+        <a class="btn ghost" href="#demo">Try the calculation in your browser</a>
       </div>
-      <p class="note">無料版でも最適化計算と切断図は制限なく使えます。App Store 公開後にリンクを差し替えます。</p>
+      <p class="note">The free version includes the full optimizer and cutting diagram. The App Store link will be added at launch.</p>
     </div>
     <div class="phone fade">
       <div class="screen">
         <div class="notch"><span></span></div>
-        <div class="bar"><span class="back">&lsaquo; ガーデンベンチ</span><b>結果</b><span style="width:70px"></span></div>
+        <div class="bar"><span class="back">&lsaquo; Garden Bench</span><b>Result</b><span style="width:70px"></span></div>
         <div class="body">
           <div class="stat-row">
-            <div class="stat"><b id="hBars">-</b><small>必要本数</small></div>
-            <div class="stat"><b id="hYield">-</b><small>歩留まり</small></div>
-            <div class="stat"><b id="hCost">-</b><small>材料費</small></div>
+            <div class="stat"><b id="hBars">-</b><small>Boards</small></div>
+            <div class="stat"><b id="hYield">-</b><small>Yield</small></div>
+            <div class="stat"><b id="hCost">-</b><small>Cost</small></div>
           </div>
-          <div class="diagram-title">切断図</div>
+          <div class="diagram-title">Cutting diagram</div>
           <div id="heroDiagram"></div>
           <div class="legend" id="heroLegend">
-            <span><i style="background:var(--kerf)"></i>刃厚 3mm</span>
-            <span><i style="background:var(--stock);box-shadow:inset 0 0 0 2px var(--green)"></i>使える端材</span>
+            <span><i style="background:var(--kerf)"></i>Kerf 1/8 in</span>
+            <span><i style="background:var(--stock);box-shadow:inset 0 0 0 2px var(--green)"></i>Usable offcut</span>
           </div>
-          <div class="diagram-title" style="margin-top:14px">端材</div>
+          <div class="diagram-title" style="margin-top:14px">Offcuts</div>
           <div style="color:var(--muted)" id="hOffcuts"></div>
         </div>
       </div>
@@ -283,39 +282,39 @@
 
 <section class="alt" id="problem">
   <div class="wrap">
-    <span class="eyebrow">なぜ必要か</span>
-    <h2>「最後の 1 本が 3mm 足りない」を、なくす</h2>
-    <p class="lead">2×4 材を何本買えば足りるか。どう切れば端材が最小か。紙と電卓で計算すると、刃厚を勘定に入れ忘れて材が足りなくなるのが定番の失敗です。</p>
+    <span class="eyebrow">Why</span>
+    <h2>No more “the last piece is 1/8 in short”</h2>
+    <p class="lead">How many 2x4s do I need? Which cuts leave the least waste? Do it on paper and the classic mistake is forgetting the blade kerf, so the board runs out one piece early.</p>
     <div class="problem-grid">
       <div class="card bad fade">
-        <span class="tag">紙と電卓</span>
-        <h3>1820mm から 450mm × 4 本</h3>
-        <p style="color:var(--muted);font-size:.95rem;margin:0">450 × 4 = 1800。「20mm 余る」と思って切り始めると、刃厚 3mm × 3 回分で 4 本目が 1mm 短くなります。</p>
+        <span class="tag">Pencil and calculator</span>
+        <h3>Four 24 in pieces from a 96 in board</h3>
+        <p style="color:var(--muted);font-size:.95rem;margin:0">24 × 4 = 96, so it looks like a perfect fit. Three cuts at 1/8 in each eat 3/8 in, and the fourth piece comes out 23 5/8 in.</p>
         <div class="mini-diagram">
           <div class="stockbar">
-            <div class="piece" style="flex:450;background:var(--c1)">450</div><div class="kerfline"></div>
-            <div class="piece" style="flex:450;background:var(--c1)">450</div><div class="kerfline"></div>
-            <div class="piece" style="flex:450;background:var(--c1)">450</div><div class="kerfline"></div>
-            <div class="short" style="flex:411">449 (足りない)</div>
+            <div class="piece" style="flex:240;background:var(--c1)">24</div><div class="kerfline"></div>
+            <div class="piece" style="flex:240;background:var(--c1)">24</div><div class="kerfline"></div>
+            <div class="piece" style="flex:240;background:var(--c1)">24</div><div class="kerfline"></div>
+            <div class="short" style="flex:236">23 5/8 (short)</div>
           </div>
         </div>
       </div>
       <div class="card good fade">
-        <span class="tag">イタドリ</span>
-        <h3>刃厚を含めて配置を決める</h3>
-        <p style="color:var(--muted);font-size:.95rem;margin:0">切断 1 回ごとに刃厚を差し引き、木口落としと使える端材の下限も考慮して、必要本数と切断順を出します。</p>
+        <span class="tag">Itadori</span>
+        <h3>Kerf is part of the layout</h3>
+        <p style="color:var(--muted);font-size:.95rem;margin:0">Every cut subtracts the kerf. End trimming and the minimum usable offcut are part of the plan, so you get the real board count and cut order.</p>
         <div class="mini-diagram">
           <div class="stockbar">
-            <div class="piece" style="flex:450;background:var(--c1)">450</div><div class="kerfline"></div>
-            <div class="piece" style="flex:450;background:var(--c1)">450</div><div class="kerfline"></div>
-            <div class="piece" style="flex:450;background:var(--c1)">450</div><div class="kerfline"></div>
-            <div class="offcut" style="flex:461;background:var(--stock)"></div>
+            <div class="piece" style="flex:240;background:var(--c1)">24</div><div class="kerfline"></div>
+            <div class="piece" style="flex:240;background:var(--c1)">24</div><div class="kerfline"></div>
+            <div class="piece" style="flex:240;background:var(--c1)">24</div><div class="kerfline"></div>
+            <div class="offcut" style="flex:236;background:var(--stock)"></div>
           </div>
           <div class="stockbar" style="margin-top:6px">
-            <div class="piece" style="flex:450;background:var(--c1)">450</div><div class="kerfline"></div>
-            <div class="offcut usable" style="flex:1367;background:var(--stock)"></div>
+            <div class="piece" style="flex:240;background:var(--c1)">24</div><div class="kerfline"></div>
+            <div class="offcut usable" style="flex:719;background:var(--stock)"></div>
           </div>
-          <p style="font-size:.8rem;color:var(--muted);margin:8px 0 0">必要本数 2 本。2 本目の端材 1367mm は次の制作に使えます。</p>
+          <p style="font-size:.8rem;color:var(--muted);margin:8px 0 0">Two boards. The 71 7/8 in offcut from the second board goes into your next project.</p>
         </div>
       </div>
     </div>
@@ -324,38 +323,38 @@
 
 <section id="features">
   <div class="wrap">
-    <span class="eyebrow">できること</span>
-    <h2>現場で必要なことだけを、正確に</h2>
+    <span class="eyebrow">Features</span>
+    <h2>Only what the shop needs, done right</h2>
     <div class="features">
       <div class="feature fade">
         <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 7h18v10H3z"/><path d="M8 7v10M13 7v10"/></svg></div>
-        <h3>複数の定尺を同時に扱う</h3>
-        <p>2×4 の 6F / 8F / 10F など、手持ちの材を複数登録。単価を入れれば費用が最も安い組み合わせを選びます。</p>
+        <h3>Several stock lengths at once</h3>
+        <p>Register 2x4 8 ft, 10 ft, 12 ft and more. Add unit prices and Itadori picks the cheapest combination.</p>
       </div>
       <div class="feature fade">
         <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 4l16 16"/><path d="M4 20L20 4"/><circle cx="12" cy="12" r="3"/></svg></div>
-        <h3>刃厚・木口落とし・端材の下限</h3>
-        <p>切断ごとの刃厚、両端の木口落とし、「これ以下は捨てる」端材の下限を設定。使える端材が残る配置を優先します。</p>
+        <h3>Kerf, end trim, usable offcut</h3>
+        <p>Set the kerf per cut, trimming at both ends and the length below which an offcut is scrap. Layouts that leave usable offcuts win.</p>
       </div>
       <div class="feature fade">
         <div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="8" height="7" rx="1"/><rect x="13" y="4" width="8" height="7" rx="1"/><rect x="3" y="13" width="8" height="7" rx="1"/><rect x="13" y="13" width="8" height="7" rx="1"/></svg></div>
-        <h3>材種ごとにグループ分け</h3>
-        <p>2×4 と 1×4、スギとヒノキのように異なる材は混ぜません。グループを跨いだ配置は起きない設計です。</p>
+        <h3>Material groups</h3>
+        <p>2x4 and 1x4, pine and oak never get mixed. Parts are only placed on stock from the same group.</p>
       </div>
       <div class="feature fade">
         <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 15v-4M12 15V8M16 15v-6"/></svg></div>
-        <h3>本数・歩留まり・端材を一目で</h3>
-        <p>必要本数、歩留まり、材料費、端材の一覧を結果画面の先頭に表示。切断図は部材ごとに色分けします。</p>
+        <h3>Boards, yield and offcuts at a glance</h3>
+        <p>Board count, yield, cost estimate and the offcut list sit at the top of the result. The diagram is color-coded by part.</p>
       </div>
       <div class="feature fade">
         <div class="icon"><svg viewBox="0 0 24 24"><path d="M6 3h9l5 5v13H6z"/><path d="M14 3v6h6"/><path d="M9 14h6M9 17h6"/></svg></div>
-        <h3>PDF / PNG で書き出し<span class="pro">Pro</span></h3>
-        <p>切断図と一覧を A4 PDF や PNG に書き出して、作業場で印刷したり LINE で共有したり。</p>
+        <h3>PDF / PNG export<span class="pro">Pro</span></h3>
+        <p>Export the diagram and the lists as a PDF or PNG to print for the shop or share with a friend.</p>
       </div>
       <div class="feature fade">
         <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 4v12"/><path d="M7 11l5 5 5-5"/><path d="M4 20h16"/></svg></div>
-        <h3>バックアップの書き出し・読み込み<span class="pro">Pro</span></h3>
-        <p>すべてのプロジェクトを 1 つのファイルに。機種変更のときも、クラウドを経由せずに移せます。</p>
+        <h3>Backup export / import<span class="pro">Pro</span></h3>
+        <p>All your projects in one file. Move to a new phone without going through any cloud.</p>
       </div>
     </div>
   </div>
@@ -363,20 +362,20 @@
 
 <section class="alt" id="how">
   <div class="wrap">
-    <span class="eyebrow">使い方</span>
-    <h2>3 ステップで切断図</h2>
+    <span class="eyebrow">How it works</span>
+    <h2>A cutting diagram in 3 steps</h2>
     <div class="steps">
       <div class="step fade">
-        <h3>材料を登録する</h3>
-        <p>プリセット（2×4 6F など）から選ぶか、長さと単価を直接入力します。</p>
+        <h3>Register your stock</h3>
+        <p>Pick from presets (2x4 8 ft, studs, 4x8 sheets) or type a length and price.</p>
       </div>
       <div class="step fade">
-        <h3>部材を入力する</h3>
-        <p>「脚 450mm × 4」のように、名前・長さ・本数を行で追加します。</p>
+        <h3>Enter the parts</h3>
+        <p>One row per part: name, length such as 17 3/4, quantity.</p>
       </div>
       <div class="step fade">
-        <h3>計算する</h3>
-        <p>必要本数と切断図が出ます。刃厚などの設定を変えれば即座に再計算します。</p>
+        <h3>Calculate</h3>
+        <p>You get the board count and the diagram. Change the kerf or any setting and it recalculates instantly.</p>
       </div>
     </div>
   </div>
@@ -384,47 +383,47 @@
 
 <section id="demo">
   <div class="wrap">
-    <span class="eyebrow">ブラウザで試す</span>
-    <h2>計算のイメージを、ここで</h2>
-    <p class="lead">アプリと同じ考え方（刃厚を含めた配置）を簡易版で再現しています。数値を変えると即座に切断図が更新されます。</p>
+    <span class="eyebrow">Try it</span>
+    <h2>See the calculation right here</h2>
+    <p class="lead">A simplified version of the same idea (kerf-aware placement). Lengths are in inches. Change any number and the diagram updates.</p>
     <div class="demo">
       <div class="panel">
-        <h3>入力</h3>
+        <h3>Input</h3>
         <div class="chip-group" id="presets">
-          <button class="chip on" data-preset="bench">ガーデンベンチ</button>
-          <button class="chip" data-preset="shelf">本棚</button>
-          <button class="chip" data-preset="fence">フェンス</button>
+          <button class="chip on" data-preset="bench">Garden bench</button>
+          <button class="chip" data-preset="shelf">Bookshelf</button>
+          <button class="chip" data-preset="fence">Fence</button>
         </div>
         <div class="stocks">
-          <div class="row-head">材料（定尺）</div>
-          <div class="row" style="grid-template-columns:1.3fr 1fr 1fr auto"><span class="row-head">名前</span><span class="row-head">長さ mm</span><span class="row-head">単価 円</span><span></span></div>
+          <div class="row-head">Stock</div>
+          <div class="row" style="grid-template-columns:1.3fr 1fr 1fr auto"><span class="row-head">Name</span><span class="row-head">Length in</span><span class="row-head">Price $</span><span></span></div>
           <div id="stockRows"></div>
-          <button class="btn ghost small" id="addStock" type="button">+ 材料を追加</button>
+          <button class="btn ghost small" id="addStock" type="button">+ Add stock</button>
         </div>
         <div class="parts">
-          <div class="row-head">部材</div>
-          <div class="row"><span class="row-head">名前</span><span class="row-head">長さ mm</span><span class="row-head">本数</span><span></span></div>
+          <div class="row-head">Parts</div>
+          <div class="row"><span class="row-head">Name</span><span class="row-head">Length in</span><span class="row-head">Qty</span><span></span></div>
           <div id="partRows"></div>
-          <button class="btn ghost small" id="addPart" type="button">+ 部材を追加</button>
+          <button class="btn ghost small" id="addPart" type="button">+ Add part</button>
         </div>
         <div style="margin-top:18px">
-          <div class="field"><label>刃厚 (mm)</label><input type="number" id="kerf" value="3" min="0" step="0.1"></div>
-          <div class="field"><label>木口落とし 先端 (mm)</label><input type="number" id="trim" value="10" min="0"></div>
-          <div class="field"><label>使える端材の下限 (mm)</label><input type="number" id="minOffcut" value="300" min="0"></div>
+          <div class="field"><label>Kerf (in)</label><input type="number" id="kerf" value="0.125" min="0" step="0.0625"></div>
+          <div class="field"><label>End trim (in)</label><input type="number" id="trim" value="0.5" min="0" step="0.125"></div>
+          <div class="field"><label>Min usable offcut (in)</label><input type="number" id="minOffcut" value="12" min="0"></div>
         </div>
       </div>
       <div class="panel">
-        <h3>結果 <span style="font-size:.8rem;color:var(--muted);font-weight:500" id="algoNote"></span></h3>
+        <h3>Result <span style="font-size:.8rem;color:var(--muted);font-weight:500" id="algoNote"></span></h3>
         <div class="result-stats">
-          <div class="stat"><b id="rBars">-</b><small>必要本数</small></div>
-          <div class="stat"><b id="rYield">-</b><small>歩留まり</small></div>
-          <div class="stat"><b id="rCost">-</b><small>材料費</small></div>
-          <div class="stat"><b id="rCuts">-</b><small>切断回数</small></div>
+          <div class="stat"><b id="rBars">-</b><small>Boards</small></div>
+          <div class="stat"><b id="rYield">-</b><small>Yield</small></div>
+          <div class="stat"><b id="rCost">-</b><small>Cost</small></div>
+          <div class="stat"><b id="rCuts">-</b><small>Cuts</small></div>
         </div>
         <div class="diagram" id="diagram"></div>
         <div id="unplaced"></div>
         <div class="offcut-list" id="offcuts"></div>
-        <p class="diagram-note">この簡易版は FFD（長い部材から順に詰める）だけで計算しています。アプリ本体は小規模なら厳密解、それ以上は局所探索で改善し、単価と端材の使いやすさまで評価します。</p>
+        <p class="diagram-note">This demo only runs first-fit decreasing. The app solves small jobs exactly and improves larger ones with local search, weighing price and offcut usability.</p>
       </div>
     </div>
   </div>
@@ -432,78 +431,78 @@
 
 <section class="alt" id="pricing">
   <div class="wrap center">
-    <span class="eyebrow">価格</span>
-    <h2>無料で計算、気に入ったら一度だけ</h2>
-    <p class="lead">計算そのものは無料版でも制限なく使えます。サブスクリプションはありません。今後もありません。</p>
+    <span class="eyebrow">Pricing</span>
+    <h2>Free to calculate. Pay once if you like it</h2>
+    <p class="lead">The optimizer itself is free without limits. There is no subscription, and there never will be.</p>
     <div class="pricing" style="text-align:left">
       <div class="plan fade">
-        <h3>無料</h3>
+        <h3>Free</h3>
         <div class="price">¥0</div>
         <ul>
-          <li><span>最適化計算・切断図</span><span>使える</span></li>
-          <li><span>プロジェクト保存</span><span>1 件</span></li>
-          <li><span>材料の種類</span><span>2 種類</span></li>
-          <li><span>部材の行数</span><span>5 行</span></li>
-          <li><span>PDF / PNG 書き出し</span><span class="no">なし</span></li>
-          <li><span>バックアップ</span><span class="no">なし</span></li>
+          <li><span>Optimizer and diagram</span><span>Included</span></li>
+          <li><span>Saved projects</span><span>1</span></li>
+          <li><span>Stock types</span><span>2</span></li>
+          <li><span>Part rows</span><span>5</span></li>
+          <li><span>PDF / PNG export</span><span class="no">No</span></li>
+          <li><span>Backup</span><span class="no">No</span></li>
         </ul>
       </div>
       <div class="plan pro fade">
-        <h3 style="color:var(--pro)">イタドリ Pro</h3>
-        <div class="price">¥900 <small>一度きり</small></div>
+        <h3 style="color:var(--pro)">Itadori Pro</h3>
+        <div class="price">$9.99 <small>once</small></div>
         <ul>
-          <li><span>最適化計算・切断図</span><span>使える</span></li>
-          <li><span>プロジェクト保存</span><span>無制限</span></li>
-          <li><span>材料の種類</span><span>無制限</span></li>
-          <li><span>部材の行数</span><span>無制限</span></li>
-          <li><span>PDF / PNG 書き出し</span><span>使える</span></li>
-          <li><span>バックアップ</span><span>使える</span></li>
+          <li><span>Optimizer and diagram</span><span>Included</span></li>
+          <li><span>Saved projects</span><span>Unlimited</span></li>
+          <li><span>Stock types</span><span>Unlimited</span></li>
+          <li><span>Part rows</span><span>Unlimited</span></li>
+          <li><span>PDF / PNG export</span><span>Included</span></li>
+          <li><span>Backup</span><span>Included</span></li>
         </ul>
       </div>
     </div>
-    <p class="pricing-note">将来の 2 次元板取り（合板）対応も、Pro 購入者には追加料金なしで提供します。</p>
+    <p class="pricing-note">Sheet (2D) optimization is planned for v2.0 and will be a free update for Pro owners.</p>
   </div>
 </section>
 
 <section id="zero">
   <div class="wrap center">
-    <span class="eyebrow">設計方針</span>
-    <h2>通信ゼロ・アカウントゼロ・権限ゼロ</h2>
-    <p class="lead">計算しかしないアプリに、サーバーもログインも必要ありません。</p>
+    <span class="eyebrow">Principles</span>
+    <h2>Zero network, zero accounts, zero permissions</h2>
+    <p class="lead">An app that only calculates needs no server and no login.</p>
     <div class="zeros">
-      <div class="zero fade"><div class="big">0</div><h3>通信</h3><p>App Store の購入処理を除き、一切ネットワークを使いません。分析 SDK も広告もありません。</p></div>
-      <div class="zero fade"><div class="big">0</div><h3>アカウント</h3><p>ログイン・同期・クラウド保存はありません。入力データは端末内にだけ保存されます。</p></div>
-      <div class="zero fade"><div class="big">0</div><h3>権限</h3><p>カメラ・写真・位置情報・通知のいずれも要求しません。書き出しは共有シート経由です。</p></div>
+      <div class="zero fade"><div class="big">0</div><h3>Network</h3><p>No network traffic at all except App Store purchase processing. No analytics SDK, no ads.</p></div>
+      <div class="zero fade"><div class="big">0</div><h3>Accounts</h3><p>No login, no sync, no cloud. Your data stays on your phone.</p></div>
+      <div class="zero fade"><div class="big">0</div><h3>Permissions</h3><p>No camera, photo, location or notification permissions. Export goes through the share sheet.</p></div>
     </div>
   </div>
 </section>
 
 <section class="alt" id="faq">
   <div class="wrap">
-    <div class="center"><span class="eyebrow">FAQ</span><h2>よくある質問</h2></div>
+    <div class="center"><span class="eyebrow">FAQ</span><h2>FAQ</h2></div>
     <div class="faq">
-      <details><summary>iPad で使えますか</summary><p>iPhone 専用です。iPad には対応していません。</p></details>
-      <details><summary>インチ表記の材料でも使えますか</summary><p>mm / cm / インチを切り替えられます。内部では常に mm で計算するので、単位を変えても結果は変わりません。</p></details>
-      <details><summary>合板（2 次元）の板取りはできますか</summary><p>v1.0 は棒材・板材の 1 次元カットのみです。2 次元板取りは v2.0 で対応予定で、Pro 購入者には追加料金なしで提供します。</p></details>
-      <details><summary>無料版でどこまで使えますか</summary><p>最適化計算と切断図の表示は制限なく使えます。保存できるプロジェクトが 1 件、材料が 2 種類、部材が 5 行までという上限があります。</p></details>
-      <details><summary>機種変更したらデータはどうなりますか</summary><p>Pro のバックアップ書き出しでファイルにして、新しい端末で読み込めます。Pro の購入は App Store の「購入を復元」で引き継げます。</p></details>
-      <details><summary>データはどこに保存されますか</summary><p>端末内にだけ保存されます。開発者を含め、誰にも送信されません。</p></details>
+      <details><summary>Does it run on iPad?</summary><p>iPhone only. iPad is not supported.</p></details>
+      <details><summary>Does it handle fractional inches?</summary><p>Yes. Type 35 3/4, 35-3/4 or 35.75 and everything is shown to the nearest 1/16 in. You can also switch to mm or cm at any time.</p></details>
+      <details><summary>Can it optimize sheet goods (2D)?</summary><p>v1.0 is linear cutting only (boards, bars, pipe). Sheet optimization is planned for v2.0 as a free update for Pro owners.</p></details>
+      <details><summary>How far does the free version go?</summary><p>The optimizer and the diagram are fully available. Limits are 1 saved project, 2 stock types and 5 part rows.</p></details>
+      <details><summary>What happens when I get a new phone?</summary><p>Export a backup file with Pro and import it on the new phone. The Pro purchase carries over with Restore Purchases.</p></details>
+      <details><summary>Where is my data stored?</summary><p>Only on your phone. Nothing is sent to anyone, including the developer.</p></details>
     </div>
   </div>
 </section>
 
 <section class="final">
   <div class="wrap">
-    <h2>次の制作から、材料の計算をアプリに任せる</h2>
-    <p>無料で計算できます。Pro は一度だけ ¥900。</p>
-    <a class="btn primary" href="#">App Store で入手</a>
+    <h2>Let the app do the lumber math on your next build</h2>
+    <p>Calculating is free. Pro is $9.99, once.</p>
+    <a class="btn primary" href="#">Get it on the App Store</a>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <span>&copy; 2026 DAWN　イタドリ − 木材カット計算</span>
-    <span><a href="https://fumy98.github.io/">サポート</a><a href="https://fumy98.github.io/itadori/privacy">プライバシーポリシー</a></span>
+    <span>&copy; 2026 DAWN　Itadori − Cut List Optimizer</span>
+    <span><a href="https://fumy98.github.io/itadori/en/">Support</a><a href="https://fumy98.github.io/itadori/privacy/">Privacy Policy</a></span>
   </div>
 </footer>
 
@@ -515,13 +514,19 @@
     for (var i = 0; i < label.length; i++) { h ^= label.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
     return PALETTE[h % PALETTE.length];
   }
-  function fmt(n) { return Math.round(n * 10) / 10; }
+  function fmt(n) { // inches to nearest 1/16 as a mixed fraction
+    var total = Math.round(n * 16), whole = Math.floor(total / 16), num = total % 16, den = 16;
+    if (num === 0) return String(whole);
+    while (num % 2 === 0) { num /= 2; den /= 2; }
+    return (whole ? whole + ' ' : '') + num + '/' + den;
+  }
+  function money(v) { return '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
 
   // ---- 簡易ソルバー（FFD + 刃厚）----
   // 材 1 本の使用長 = Σlen + kerf × (n - 1)。端材が残るときだけ最後の切断 1 回分を追加する。
   function solveWith(stocks, parts, kerf, trim, minOffcut, pickStock) {
     var pieces = [];
-    parts.forEach(function (p) { for (var i = 0; i < p.qty; i++) pieces.push({ label: p.name || '部材', len: p.len }); });
+    parts.forEach(function (p) { for (var i = 0; i < p.qty; i++) pieces.push({ label: p.name || 'Part', len: p.len }); });
     pieces.sort(function (a, b) { return b.len - a.len; });
     var usable = stocks.filter(function (s) { return s.len > 0; }).map(function (s) {
       return { name: s.name, len: s.len, price: s.price, eff: s.len - trim };
@@ -590,19 +595,19 @@
       var idx = document.createElement('div'); idx.className = 'idx'; idx.textContent = opts.short ? String(i + 1) : b.stock.name;
       var track = document.createElement('div'); track.className = 'track';
       var bar = document.createElement('div'); bar.className = 'stockbar'; bar.style.width = (b.stock.len / maxLen * 100) + '%';
-      bar.title = b.stock.name + ' ' + b.stock.len + 'mm';
+      bar.title = b.stock.name + ' ' + fmt(b.stock.len) + ' in';
       if (b.trim > 0) { var t = document.createElement('div'); t.className = 'offcut'; t.style.flex = String(b.trim); t.style.background = 'repeating-linear-gradient(45deg,#bbb 0 2px,transparent 2px 5px)'; bar.appendChild(t); }
       b.pieces.forEach(function (p, j) {
-        if (j > 0) { var k = document.createElement('div'); k.className = 'kerfline'; k.style.flex = String(Math.max(kerf, 2)); bar.appendChild(k); }
+        if (j > 0) { var k = document.createElement('div'); k.className = 'kerfline'; k.style.flex = String(Math.max(kerf, maxLen * 0.0015)); bar.appendChild(k); }
         var d = document.createElement('div'); d.className = 'piece'; d.style.flex = String(p.len); d.style.background = colorFor(p.label);
-        d.textContent = p.len >= (opts.short ? 250 : 180) ? p.label + ' ' + fmt(p.len) : (p.len >= 120 ? fmt(p.len) : '');
-        d.title = p.label + ' ' + p.len + 'mm';
+        d.textContent = p.len >= (opts.short ? 14 : 12) ? p.label + ' ' + fmt(p.len) : (p.len >= 5 ? fmt(p.len) : '');
+        d.title = p.label + ' ' + fmt(p.len) + ' in';
         bar.appendChild(d);
       });
       if (b.offcut > 0) {
-        var k2 = document.createElement('div'); k2.className = 'kerfline'; k2.style.flex = String(Math.max(kerf, 2)); bar.appendChild(k2);
+        var k2 = document.createElement('div'); k2.className = 'kerfline'; k2.style.flex = String(Math.max(kerf, maxLen * 0.0015)); bar.appendChild(k2);
         var o = document.createElement('div'); o.className = 'offcut' + (b.usableOffcut ? ' usable' : ''); o.style.flex = String(b.offcut); o.style.background = 'var(--stock)';
-        o.title = '端材 ' + fmt(b.offcut) + 'mm'; bar.appendChild(o);
+        o.title = 'Offcut ' + fmt(b.offcut) + ' in'; bar.appendChild(o);
       }
       track.appendChild(bar); row.appendChild(idx); row.appendChild(track); container.appendChild(row);
     });
@@ -610,27 +615,27 @@
 
   // ---- ヒーローの固定図 ----
   (function () {
-    var stocks = [{ name: '2×4 6F', len: 1820, price: 498 }, { name: '2×4 8F', len: 2438, price: 698 }];
-    var parts = [{ name: '座面', len: 1200, qty: 2 }, { name: '脚', len: 450, qty: 4 }, { name: '幕板', len: 380, qty: 2 }];
-    var r = solve(stocks, parts, 3, 0, 300);
+    var stocks = [{ name: '2x4 8 ft', len: 96, price: 4 }, { name: '2x4 10 ft', len: 120, price: 6 }];
+    var parts = [{ name: 'Seat', len: 47.25, qty: 2 }, { name: 'Leg', len: 17.75, qty: 4 }, { name: 'Apron', len: 15, qty: 2 }];
+    var r = solve(stocks, parts, 0.125, 0, 12);
     r.bars.forEach(function (b, i) { b.usableOffcut = r.offcuts[i].usable; });
-    renderBars(document.getElementById('heroDiagram'), r.bars, 3, { short: true });
+    renderBars(document.getElementById('heroDiagram'), r.bars, 0.125, { short: true });
     var lg = document.getElementById('heroLegend');
     parts.forEach(function (p) { var sp = document.createElement('span'); sp.innerHTML = '<i style="background:' + colorFor(p.name) + '"></i>' + p.name; lg.insertBefore(sp, lg.firstChild); });
     document.getElementById('hBars').textContent = r.bars.length;
     document.getElementById('hYield').textContent = Math.round(r.yield * 100) + '%';
-    document.getElementById('hCost').textContent = '¥' + r.cost.toLocaleString('ja-JP');
-    document.getElementById('hOffcuts').innerHTML = r.offcuts.filter(function (o) { return o.len > 0; }).map(function (o) { return o.stock + ': ' + fmt(o.len) + 'mm' + (o.usable ? '（使える）' : ''); }).join('<br>');
+    document.getElementById('hCost').textContent = money(r.cost);
+    document.getElementById('hOffcuts').innerHTML = r.offcuts.filter(function (o) { return o.len > 0; }).map(function (o) { return o.stock + ': ' + fmt(o.len) + ' in' + (o.usable ? ' (usable)' : ''); }).join('<br>');
   })();
 
   // ---- インタラクティブデモ ----
   var PRESETS = {
-    bench: { stocks: [{ name: '2×4 6F', len: 1820, price: 498 }, { name: '2×4 8F', len: 2438, price: 698 }],
-             parts: [{ name: '脚', len: 450, qty: 4 }, { name: '座面', len: 1200, qty: 3 }, { name: '幕板', len: 380, qty: 2 }, { name: '貫', len: 300, qty: 2 }] },
-    shelf: { stocks: [{ name: '1×4 6F', len: 1820, price: 398 }],
-             parts: [{ name: '側板', len: 900, qty: 2 }, { name: '棚板', len: 600, qty: 4 }, { name: '背板', len: 560, qty: 2 }] },
-    fence: { stocks: [{ name: '杉 2m', len: 2000, price: 780 }, { name: '杉 3m', len: 3000, price: 1150 }],
-             parts: [{ name: '支柱', len: 1500, qty: 4 }, { name: '横桟', len: 1800, qty: 6 }, { name: '笠木', len: 900, qty: 4 }] }
+    bench: { stocks: [{ name: '2x4 8 ft', len: 96, price: 4 }, { name: '2x4 10 ft', len: 120, price: 6 }],
+             parts: [{ name: 'Leg', len: 17.75, qty: 4 }, { name: 'Seat', len: 47.25, qty: 3 }, { name: 'Apron', len: 15, qty: 2 }, { name: 'Brace', len: 11.75, qty: 2 }] },
+    shelf: { stocks: [{ name: '1x4 8 ft', len: 96, price: 3.5 }],
+             parts: [{ name: 'Side', len: 36, qty: 2 }, { name: 'Shelf', len: 23.5, qty: 4 }, { name: 'Back rail', len: 22, qty: 2 }] },
+    fence: { stocks: [{ name: 'Cedar 8 ft', len: 96, price: 7 }, { name: 'Cedar 12 ft', len: 144, price: 10 }],
+             parts: [{ name: 'Post', len: 60, qty: 4 }, { name: 'Rail', len: 72, qty: 6 }, { name: 'Cap', len: 36, qty: 4 }] }
   };
   var stockRows = document.getElementById('stockRows'), partRows = document.getElementById('partRows');
 
@@ -638,10 +643,10 @@
     var row = document.createElement('div'); row.className = 'row';
     if (cols.length === 3 && cols[2].type !== 'number') row.style.gridTemplateColumns = '1.3fr 1fr 1fr auto';
     cols.forEach(function (c) {
-      var inp = document.createElement('input'); inp.type = c.type; inp.value = c.value; if (c.min != null) inp.min = c.min;
+      var inp = document.createElement('input'); inp.type = c.type; inp.value = c.value; if (c.min != null) inp.min = c.min; if (c.type === 'number' && c.key === 'len') inp.step = '0.0625';
       inp.dataset.key = c.key; inp.addEventListener('input', recalc); row.appendChild(inp);
     });
-    var del = document.createElement('button'); del.className = 'del'; del.type = 'button'; del.textContent = '×'; del.title = '削除';
+    var del = document.createElement('button'); del.className = 'del'; del.type = 'button'; del.textContent = '×'; del.title = 'Remove';
     del.addEventListener('click', function () { row.remove(); recalc(); });
     row.appendChild(del);
     return row;
@@ -668,18 +673,18 @@
     r.bars.forEach(function (b, i) { b.usableOffcut = r.offcuts[i].usable; });
     document.getElementById('rBars').textContent = r.bars.length;
     document.getElementById('rYield').textContent = r.bars.length ? Math.round(r.yield * 100) + '%' : '-';
-    document.getElementById('rCost').textContent = '¥' + r.cost.toLocaleString('ja-JP');
+    document.getElementById('rCost').textContent = money(r.cost);
     document.getElementById('rCuts').textContent = r.cuts;
     var total = parts.reduce(function (a, p) { return a + p.qty; }, 0);
-    document.getElementById('algoNote').textContent = total ? '部材 ' + total + ' 本 / 簡易版 FFD' : '';
+    document.getElementById('algoNote').textContent = total ? total + ' parts / simplified FFD' : '';
     renderBars(document.getElementById('diagram'), r.bars, kerf);
     var up = document.getElementById('unplaced');
-    up.innerHTML = r.unplaced.length ? '<div class="unplaced">配置できない部材: ' + r.unplaced.map(function (p) { return p.label + ' ' + p.len + 'mm'; }).join('、') + '（どの材にも入りません）</div>' : '';
+    up.innerHTML = r.unplaced.length ? '<div class="unplaced">Cannot be placed: ' + r.unplaced.map(function (p) { return p.label + ' ' + fmt(p.len) + ' in'; }).join(', ') + ' (longer than any stock)</div>' : '';
     var off = r.offcuts.filter(function (o) { return o.len > 0; });
-    document.getElementById('offcuts').innerHTML = off.length ? '<b style="color:var(--text)">端材</b>: ' + off.map(function (o) { return o.stock + ' ' + fmt(o.len) + 'mm' + (o.usable ? '（使える）' : ''); }).join(' / ') : '';
+    document.getElementById('offcuts').innerHTML = off.length ? '<b style="color:var(--text)">Offcuts</b>: ' + off.map(function (o) { return o.stock + ' ' + fmt(o.len) + ' in' + (o.usable ? ' (usable)' : ''); }).join(' / ') : '';
   }
-  document.getElementById('addStock').addEventListener('click', function () { addStock({ name: '材料', len: 1820, price: 0 }); recalc(); });
-  document.getElementById('addPart').addEventListener('click', function () { addPart({ name: '部材', len: 300, qty: 1 }); recalc(); });
+  document.getElementById('addStock').addEventListener('click', function () { addStock({ name: 'Stock', len: 96, price: 0 }); recalc(); });
+  document.getElementById('addPart').addEventListener('click', function () { addPart({ name: 'Part', len: 12, qty: 1 }); recalc(); });
   ['kerf', 'trim', 'minOffcut'].forEach(function (id) { document.getElementById(id).addEventListener('input', recalc); });
   document.getElementById('presets').addEventListener('click', function (e) {
     var btn = e.target.closest('.chip'); if (!btn) return;
