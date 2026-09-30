@@ -4,66 +4,288 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LockCanvas - ロック画面にパーツを並べる</title>
-<meta name="description" content="推し活・習慣・勉強・目標・ふたりの記念日。ロック画面に自分だけのパーツを並べて、テーマでまとめて着せ替える iPhone アプリ。">
+<meta name="description" content="推し活・習慣・勉強・目標・ふたりの記念日。あと○日、単語帳、育つ習慣の花をロック画面に置いて、テーマでまとめて着せ替える iPhone アプリ。ロック画面でタップして記録もできます。">
+<meta property="og:title" content="LockCanvas - ロック画面にパーツを並べる">
+<meta property="og:description" content="ロック画面に置きたいものを「パーツ」として組み立て、テーマでまとめて着せ替え。">
+<meta property="og:type" content="website">
 <style>
-  :root { --ink: #1B2330; --muted: #6B7484; --accent: #7C5CFF; --bg: #F7F6FB; --card: #fff; }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.8; }
-  main { max-width: 760px; margin: 0 auto; padding: 56px 20px 80px; }
-  header { text-align: center; margin-bottom: 48px; }
-  .icon { width: 96px; height: 96px; border-radius: 22px; background: linear-gradient(135deg, #7C5CFF, #FF7BAC); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 44px; font-weight: 700; }
-  h1 { font-size: 2rem; margin: 0 0 .2em; letter-spacing: .02em; }
-  .lead { color: var(--muted); font-size: 1.05rem; margin: 0; }
-  h2 { font-size: 1.2rem; margin: 2.4em 0 .6em; border-left: 4px solid var(--accent); padding-left: .6em; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
-  .card { background: var(--card); border-radius: 14px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(27,35,48,.06); }
-  .card h3 { margin: 0 0 .3em; font-size: 1rem; }
-  .card p { margin: 0; color: var(--muted); font-size: .95rem; }
-  ul { padding-left: 1.4em; }
-  footer { margin-top: 64px; color: var(--muted); font-size: .85rem; text-align: center; }
-  a { color: #5b3fd6; }
-  .note { background: #fff7e6; border-radius: 10px; padding: 12px 16px; color: #6a4b00; font-size: .95rem; }
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #F7F5FC;
+    --text: #1B1F2E;
+    --muted: #6E7385;
+    --line: #DDDCE8;
+    --accent: #6B57F0;
+    --accent-dark: #4E3BD0;
+    --accent-soft: #EEEBFF;
+    --pink: #F06AA0;
+    --radius: 16px;
+    --max: 1080px;
+  }
+  * { box-sizing: border-box; min-width: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    line-height: 1.75; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent-dark); }
+  h1, h2, h3 { line-height: 1.3; margin: 0 0 .5em; letter-spacing: .01em; }
+  h2 { font-size: clamp(1.5rem, 3.2vw, 2.1rem); }
+  h3 { font-size: 1.08rem; }
+  p { margin: 0 0 1em; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+  section { padding: 72px 0; }
+  section.alt { background: var(--bg-alt); }
+  .eyebrow { display: inline-block; font-size: .78rem; font-weight: 700; letter-spacing: .14em; color: var(--accent); text-transform: uppercase; margin-bottom: .6em; }
+  .lead { font-size: 1.08rem; color: var(--muted); max-width: 640px; }
+  .center { text-align: center; }
+  .center .lead { margin-left: auto; margin-right: auto; }
+
+  header.top { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; color: var(--text); }
+  .brand .mark { width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(135deg, var(--accent), var(--pink)); display: grid; place-items: center; color: #fff; font-size: 13px; font-weight: 800; letter-spacing: -.02em; }
+  nav a { margin-left: 22px; text-decoration: none; color: var(--muted); font-size: .95rem; }
+  nav a:hover { color: var(--text); }
+  @media (max-width: 640px) { nav { display: none; } }
+
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; font-weight: 700; text-decoration: none; border: 2px solid transparent; cursor: pointer; font-size: 1rem; transition: transform .12s ease, background .15s ease; }
+  .btn:active { transform: scale(.98); }
+  .btn.primary { background: var(--text); color: #fff; }
+  .btn.primary:hover { background: #000; }
+  .btn.ghost { border-color: var(--line); color: var(--text); background: #fff; }
+  .btn.ghost:hover { border-color: var(--accent); }
+
+  /* Hero */
+  .hero { padding: 64px 0 40px; overflow: hidden; background: radial-gradient(1200px 600px at 80% -10%, #F9E3EE 0%, transparent 60%), radial-gradient(900px 500px at 0% 20%, #ECE8FF 0%, transparent 60%); }
+  .hero .wrap { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+  .hero h1 { font-size: clamp(2rem, 4.6vw, 3.2rem); margin-bottom: .4em; }
+  .hero .lead { font-size: 1.15rem; }
+  .hero .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+  .hero .note { font-size: .85rem; color: var(--muted); margin-top: 14px; }
+  @media (max-width: 820px) { .hero .wrap { grid-template-columns: 1fr; } .hero .art { order: -1; } }
+
+  /* Lock screen illustration (drawn in CSS, same idea as the app) */
+  .phone { width: 280px; height: 600px; margin: 0 auto; border-radius: 48px; padding: 12px; background: #111; box-shadow: 0 30px 60px rgba(30, 20, 80, .25); position: relative; }
+  .phone .screen { position: relative; width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: linear-gradient(180deg, #B0306B 0%, #E88AB6 55%, #F6D3E3 100%); color: #fff; }
+  .phone .inline { position: absolute; top: 58px; left: 0; right: 0; text-align: center; font-size: 11px; font-weight: 600; letter-spacing: .02em; opacity: .95; }
+  .phone .clock { position: absolute; top: 72px; left: 0; right: 0; text-align: center; font-size: 74px; font-weight: 600; letter-spacing: -.02em; line-height: 1; }
+  .phone .row { position: absolute; top: 160px; left: 0; right: 0; display: flex; justify-content: center; gap: 8px; }
+  .tile { background: rgba(255,255,255,.22); border-radius: 14px; height: 52px; display: flex; flex-direction: column; justify-content: center; padding: 0 10px; font-size: 9px; line-height: 1.25; }
+  .tile.rect { width: 108px; }
+  .tile.circ { width: 52px; border-radius: 50%; align-items: center; text-align: center; padding: 0 4px; font-size: 7px; }
+  .tile b { font-size: 15px; display: block; }
+  .tile.circ b { font-size: 11px; }
+  .tile.ring { position: relative; }
+  .tile.ring::before { content: ""; position: absolute; inset: 3px; border-radius: 50%; border: 3px solid rgba(255,255,255,.35); border-top-color: #fff; border-right-color: #fff; }
+  .phone .hearts { position: absolute; top: 300px; left: 0; right: 0; text-align: center; font-size: 46px; letter-spacing: -.3em; }
+  .phone .caption { position: absolute; bottom: 60px; left: 0; right: 0; text-align: center; font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 15px; opacity: .95; }
+  .phone .bottom { position: absolute; bottom: 24px; left: 26px; right: 26px; display: flex; justify-content: space-between; }
+  .phone .bottom span { width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,.28); display: grid; place-items: center; font-size: 16px; }
+  .phone .hint { position: absolute; top: 224px; left: 0; right: 0; text-align: center; font-size: 10px; opacity: .85; }
+
+  /* Grid cards */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+  .card .icon { width: 40px; height: 40px; border-radius: 12px; background: var(--accent-soft); color: var(--accent-dark); display: grid; place-items: center; font-size: 20px; margin-bottom: 12px; }
+  .card p { color: var(--muted); margin: 0; font-size: .95rem; }
+  .tag { display: inline-block; font-size: .72rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #FFF1D6; color: #8A5A0D; margin-left: 6px; vertical-align: middle; }
+
+  /* Steps */
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; counter-reset: step; }
+  .step { background: #fff; border-radius: var(--radius); padding: 22px; border: 1px solid var(--line); position: relative; }
+  .step::before { counter-increment: step; content: counter(step); position: absolute; top: -14px; left: 18px; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 800; display: grid; place-items: center; font-size: .9rem; }
+  .step h3 { margin-top: 6px; }
+  .step p { color: var(--muted); margin: 0; font-size: .95rem; }
+
+  /* Screenshots */
+  .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; }
+  .shot { text-align: center; }
+  .shot img { width: 100%; max-width: 260px; border-radius: 26px; border: 1px solid var(--line); box-shadow: 0 16px 40px rgba(30, 20, 80, .12); }
+  .shot p { font-size: .9rem; color: var(--muted); margin-top: 10px; }
+
+  /* Pricing */
+  .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; max-width: 760px; margin: 0 auto; }
+  .plan { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+  .plan.pro { border-color: var(--accent); box-shadow: 0 12px 34px rgba(107, 87, 240, .15); }
+  .plan .price { font-size: 1.7rem; font-weight: 800; margin: .2em 0; }
+  .plan .price small { font-size: .9rem; color: var(--muted); font-weight: 600; }
+  .plan ul { padding-left: 1.2em; margin: 10px 0 0; color: var(--muted); font-size: .95rem; }
+  .plan li { margin: 4px 0; }
+
+  /* FAQ */
+  details { border-top: 1px solid var(--line); padding: 14px 0; }
+  details:last-of-type { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; font-weight: 700; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+  summary::after { content: "+"; color: var(--muted); font-size: 1.3rem; }
+  details[open] summary::after { content: "−"; }
+  details p { color: var(--muted); margin: 10px 0 0; }
+
+  footer { padding: 40px 0 60px; color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; }
+  footer a { margin-right: 16px; }
 </style>
 </head>
 <body>
-<main>
-  <header>
-    <div class="icon">LC</div>
-    <h1>LockCanvas</h1>
-    <p class="lead">ロック画面に「パーツ」を並べて、自分色にする iPhone アプリ。<br>推し活・習慣・勉強・目標・ふたりの記念日。</p>
-  </header>
 
-  <h2>できること</h2>
-  <div class="grid">
-    <div class="card"><h3>パーツを組み合わせる</h3><p>あと○日・○日目・記念日リスト、めくる単語帳、タップで記録する習慣チェック、目標までの進み、時間割、集中タイマー、二十四節気と月齢、ことば・手書き・写真の切り抜き。</p></div>
-    <div class="card"><h3>ロック画面でタップ</h3><p>アプリを開かずに、記録する・単語をめくる・タイマーを始める。iOS 17 のインタラクティブなウィジェットに対応。</p></div>
-    <div class="card"><h3>テーマでまとめて着せ替え</h3><p>壁紙とパーツの組み合わせを「テーマ」として保存。切り替えるだけでロック画面のパーツがまとめて入れ替わります。</p></div>
-    <div class="card"><h3>用途別レシピ</h3><p>推し活・習慣・目標・勉強・カップル・節約・仕事・季節。選ぶだけで壁紙とパーツがそろいます。</p></div>
-    <div class="card"><h3>着せ替え</h3><p>枠（ハート・吹き出し・チケットなど）、フォント、文字の太さ、ホーム画面ウィジェットの配色。</p></div>
-    <div class="card"><h3>おそろい・SNS</h3><p>テーマをファイルにして友だちに送る。完成イメージを SNS 用の画像で保存。</p></div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><span class="mark">LC</span>LockCanvas</a>
+    <nav>
+      <a href="#parts">パーツ</a>
+      <a href="#how">使い方</a>
+      <a href="#shots">画面</a>
+      <a href="#premium">Premium</a>
+      <a href="#faq">FAQ</a>
+      <a href="privacy.html">プライバシー</a>
+    </nav>
   </div>
+</header>
 
-  <h2>壁紙について</h2>
-  <p class="note">iOS の仕様上、アプリから壁紙を直接設定することはできません。LockCanvas は作成した壁紙を写真に保存し、設定手順を案内します。パーツはウィジェットなので、一度置けば以後は自動で更新されます。</p>
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">iPhone / iOS 17 以上</span>
+      <h1>ロック画面を、<br>自分色に。</h1>
+      <p class="lead">推しの誕生日まであと○日、英単語帳、育つ習慣の花、今月の予算の残り。ロック画面に置きたいものを「パーツ」として組み立てて、テーマでまとめて着せ替える iPhone アプリです。</p>
+      <div class="cta">
+        <a class="btn primary" href="#" aria-disabled="true">App Store（準備中）</a>
+        <a class="btn ghost" href="#how">使い方を見る</a>
+      </div>
+      <p class="note">無料で 3 テーマまで。サーバーなし・アカウント登録なし。作ったものはすべて端末の中に保存されます。</p>
+    </div>
+    <div class="art" aria-hidden="true">
+      <div class="phone"><div class="screen">
+        <div class="inline">👑 推しの誕生日 あと45日</div>
+        <div class="clock">9:41</div>
+        <div class="row">
+          <div class="tile rect"><span>💜 推しと出会って</span><b>201日目</b><span>2026年3月14日から</span></div>
+          <div class="tile circ ring"><span>8/20</span><b>今日も</b><span>よくがんばってる</span></div>
+          <div class="tile circ"><b>♡</b></div>
+        </div>
+        <div class="hint">タップして記録・めくる・タイマー開始</div>
+        <div class="hearts">🤍❤️</div>
+        <div class="caption">with you</div>
+        <div class="bottom"><span>🔦</span><span>📷</span></div>
+      </div></div>
+    </div>
+  </div>
+</section>
 
-  <h2>Premium（サブスクリプション）</h2>
-  <ul>
-    <li>テーマ無制限、自作の単語帳・ことばの束を無制限に</li>
-    <li>目標・時間割・タイマー・回数・気分・記念日リスト・写真の日めくり・ふたりの伝言板</li>
-    <li>リング・育てる・今年の進み具合の表示、プレミアムの枠とフォント</li>
-    <li>すべてのレシピ・壁紙テンプレート・素材</li>
-  </ul>
+<section id="parts">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Parts</span>
+      <h2>8 種のブロックを、組み合わせる</h2>
+      <p class="lead">純正のウィジェットにはない「自分ごと」のパーツ。ロック画面のウィジェット 1 つ分が、パーツ 1 つです。</p>
+    </div>
+    <div class="grid" style="margin-top:32px">
+      <div class="card"><div class="icon">📅</div><h3>日付をかぞえる</h3><p>あと○日・○日目・記念日リストの次。推しの誕生日、ライブ、旅行、付き合って何日目。</p></div>
+      <div class="card"><div class="icon">🃏</div><h3>めくる</h3><p>英単語帳・ことわざ・推しの言葉・おみくじ。時間でめくる、または 1 日 1 回引く。答えはタップで。</p></div>
+      <div class="card"><div class="icon">✅</div><h3>タップで記録</h3><p>習慣チェック・回数・気分スタンプ。ロック画面でタップするだけ。「育てる」スタイルでは花が育ちます。</p></div>
+      <div class="card"><div class="icon">🎯</div><h3>目標までの進み <span class="tag">Premium</span></h3><p>貯金・勉強時間・今月の予算の残り。バー・リング・大きい数字で。</p></div>
+      <div class="card"><div class="icon">🕘</div><h3>時間で切り替え <span class="tag">Premium</span></h3><p>時間割・ルーティン・シフト。「13:00 資格の勉強」と書けば、その時刻に表示が切り替わります。</p></div>
+      <div class="card"><div class="icon">⏱</div><h3>タイマー <span class="tag">Premium</span></h3><p>集中タイマー、配信やライブの開始まで。ロック画面からスタート。</p></div>
+      <div class="card"><div class="icon">🌙</div><h3>暦</h3><p>二十四節気と七十二候、月齢と満月まで、今年の残り日数。</p></div>
+      <div class="card"><div class="icon">✍️</div><h3>ことば・手書き・写真</h3><p>お守りのことば、指で書いた文字、写真から切り抜いたシルエット。写真の日めくりも。</p></div>
+    </div>
+  </div>
+</section>
 
-  <h2>動作環境</h2>
-  <p>iPhone / iOS 17.0 以上。サーバーを持たず、作成したデータは端末内に保存されます（ふたりの伝言板のみ、ご自身の iCloud を使います）。</p>
+<section class="alt" id="how">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">How it works</span>
+      <h2>用途を選ぶだけで、壁紙とパーツがそろう</h2>
+      <p class="lead">推し活・習慣・目標・勉強・カップル・節約・仕事・季節。レシピを選ぶと「テーマ」ができます。</p>
+    </div>
+    <div class="steps" style="margin-top:40px">
+      <div class="step"><h3>テーマを作る</h3><p>レシピを選ぶか、壁紙テンプレートから、または白紙から。壁紙エディタで文字・写真・ステッカーも置けます。</p></div>
+      <div class="step"><h3>枠にパーツを置く</h3><p>時計の上に 1 つ、下に最大 4 つ。枠の形（丸・長方形）、フォント、太さ、枠のデザイン（ハート・吹き出し・チケット）で自分色に。</p></div>
+      <div class="step"><h3>壁紙を保存して、ウィジェットを置く</h3><p>iOS の仕様上、壁紙はアプリから直接設定できません。写真に保存して手順どおりに設定。ウィジェットは一度置けば以後は自動で更新されます。</p></div>
+      <div class="step"><h3>テーマを切り替えるだけ</h3><p>ウィジェットを「使用中のテーマ」の枠にしておくと、アプリでテーマを切り替えるだけでロック画面のパーツがまとめて入れ替わります。</p></div>
+    </div>
+  </div>
+</section>
 
-  <h2>サポート・お問い合わせ</h2>
-  <p>ご要望・不具合は App Store のレビュー、または本ページ記載の連絡先までお知らせください。</p>
-  <p><a href="privacy.html">プライバシーポリシー</a></p>
+<section id="shots">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Screens</span>
+      <h2>画面</h2>
+    </div>
+    <div class="shots" style="margin-top:32px">
+      <div class="shot"><img src="img/home.png" alt="テーマ一覧" loading="lazy"><p>テーマ。使用中のテーマを切り替える</p></div>
+      <div class="shot"><img src="img/compose.png" alt="テーマの組み立て" loading="lazy"><p>組み立て。枠をタップして置く・入れ替える</p></div>
+      <div class="shot"><img src="img/editor.png" alt="パーツの編集" loading="lazy"><p>パーツの編集。設定がすぐプレビューに反映</p></div>
+      <div class="shot"><img src="img/export.png" alt="壁紙の書き出し" loading="lazy"><p>書き出し。壁紙を保存して設定方法を見る</p></div>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <p>© 2026 Fumiya Sakaino</p>
-  </footer>
-</main>
+<section class="alt" id="premium">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Pricing</span>
+      <h2>無料ではじめて、気に入ったら Premium</h2>
+      <p class="lead">無料でも壁紙の書き出しに透かしは入りません。Premium はサブスクリプションで、年額は 1 週間の無料トライアルつき。</p>
+    </div>
+    <div class="plans" style="margin-top:32px">
+      <div class="plan">
+        <h3>無料</h3>
+        <div class="price">¥0</div>
+        <ul>
+          <li>テーマ 3 つまで、自作の単語帳 1 つ</li>
+          <li>日付・めくる・チェック・暦・ことば・アイコン・手書き</li>
+          <li>枠 5 種・フォント 6 書体</li>
+          <li>各用途のレシピ 1 つ・各カテゴリのテンプレート 1 つ</li>
+          <li>壁紙の書き出し（透かしなし）</li>
+        </ul>
+      </div>
+      <div class="plan pro">
+        <h3>Premium</h3>
+        <div class="price">¥2,900 <small>/ 年（1 週間無料）</small></div>
+        <div style="color:var(--muted);font-size:.95rem">または ¥480 / 月</div>
+        <ul>
+          <li>テーマ・単語帳が無制限</li>
+          <li>目標・時間割・タイマー・回数・気分・記念日リスト・写真の日めくり</li>
+          <li>リング・育てる・今年の進み具合の表示</li>
+          <li>ハート・吹き出し・チケットの枠、プレミアムフォント 14 書体</li>
+          <li>すべてのレシピ・テンプレート・素材、SNS 用画像の表記なし</li>
+        </ul>
+      </div>
+    </div>
+    <p class="center" style="margin-top:18px;font-size:.85rem;color:var(--muted)">価格は日本の App Store の税込価格です。サブスクリプションは期間終了の 24 時間前までに解約しない限り自動更新され、App Store のアカウント設定から管理できます。</p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap" style="max-width:760px">
+    <div class="center">
+      <span class="eyebrow">FAQ</span>
+      <h2>よくある質問</h2>
+    </div>
+    <div style="margin-top:24px">
+      <details><summary>壁紙はアプリから自動で設定されますか？</summary><p>されません。iOS には壁紙を設定する公開 API がないため、アプリは壁紙を写真に保存し、設定手順を案内します。パーツ（ウィジェット）は一度置けば以後は自動で更新され、テーマを切り替えるだけで中身が入れ替わります。</p></details>
+      <details><summary>ロック画面でタップすると何ができますか？</summary><p>習慣のチェック、回数のカウント、気分の記録、単語をめくる、集中タイマーの開始。iOS 17 の操作できるウィジェットを使っています。ロック中にタップできるかどうかは、お使いの iPhone のロック画面の設定によります。</p></details>
+      <details><summary>ロック画面のパーツはカラーになりますか？</summary><p>ロック画面のウィジェットは iOS が単色で表示します。そのため LockCanvas は色ではなく、枠の形・フォント・太さ・図で個性を出す設計です。ホーム画面のウィジェットはカラーで表示され、テーマの配色に合わせられます。</p></details>
+      <details><summary>データはどこに保存されますか？</summary><p>すべて端末の中です。サーバーはなく、アカウント登録もありません。分析ツールや広告も入っていません。詳しくは<a href="privacy.html">プライバシーポリシー</a>をご覧ください。</p></details>
+      <details><summary>友だちと同じテーマを使えますか？</summary><p>「おそろいで送る」でテーマをファイルにして、AirDrop やメッセージで送れます。受け取った側はファイルを開くだけで取り込めます。</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">利用規約（Apple 標準 EULA）</a>
+      <a href="https://fumy98.github.io/">他のアプリ</a>
+    </div>
+    <div>© 2026 Fumiya Sakaino</div>
+  </div>
+</footer>
+
 </body>
 </html>
