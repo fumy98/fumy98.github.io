@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LockCanvas - ロック画面にパーツを並べる</title>
+<meta name="description" content="推し活・習慣・勉強・目標・ふたりの記念日。ロック画面に自分だけのパーツを並べて、テーマでまとめて着せ替える iPhone アプリ。">
+<style>
+  :root { --ink: #1B2330; --muted: #6B7484; --accent: #7C5CFF; --bg: #F7F6FB; --card: #fff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.8; }
+  main { max-width: 760px; margin: 0 auto; padding: 56px 20px 80px; }
+  header { text-align: center; margin-bottom: 48px; }
+  .icon { width: 96px; height: 96px; border-radius: 22px; background: linear-gradient(135deg, #7C5CFF, #FF7BAC); margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 44px; font-weight: 700; }
+  h1 { font-size: 2rem; margin: 0 0 .2em; letter-spacing: .02em; }
+  .lead { color: var(--muted); font-size: 1.05rem; margin: 0; }
+  h2 { font-size: 1.2rem; margin: 2.4em 0 .6em; border-left: 4px solid var(--accent); padding-left: .6em; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .card { background: var(--card); border-radius: 14px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(27,35,48,.06); }
+  .card h3 { margin: 0 0 .3em; font-size: 1rem; }
+  .card p { margin: 0; color: var(--muted); font-size: .95rem; }
+  ul { padding-left: 1.4em; }
+  footer { margin-top: 64px; color: var(--muted); font-size: .85rem; text-align: center; }
+  a { color: #5b3fd6; }
+  .note { background: #fff7e6; border-radius: 10px; padding: 12px 16px; color: #6a4b00; font-size: .95rem; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="icon">LC</div>
+    <h1>LockCanvas</h1>
+    <p class="lead">ロック画面に「パーツ」を並べて、自分色にする iPhone アプリ。<br>推し活・習慣・勉強・目標・ふたりの記念日。</p>
+  </header>
+
+  <h2>できること</h2>
+  <div class="grid">
+    <div class="card"><h3>パーツを組み合わせる</h3><p>あと○日・○日目・記念日リスト、めくる単語帳、タップで記録する習慣チェック、目標までの進み、時間割、集中タイマー、二十四節気と月齢、ことば・手書き・写真の切り抜き。</p></div>
+    <div class="card"><h3>ロック画面でタップ</h3><p>アプリを開かずに、記録する・単語をめくる・タイマーを始める。iOS 17 のインタラクティブなウィジェットに対応。</p></div>
+    <div class="card"><h3>テーマでまとめて着せ替え</h3><p>壁紙とパーツの組み合わせを「テーマ」として保存。切り替えるだけでロック画面のパーツがまとめて入れ替わります。</p></div>
+    <div class="card"><h3>用途別レシピ</h3><p>推し活・習慣・目標・勉強・カップル・節約・仕事・季節。選ぶだけで壁紙とパーツがそろいます。</p></div>
+    <div class="card"><h3>着せ替え</h3><p>枠（ハート・吹き出し・チケットなど）、フォント、文字の太さ、ホーム画面ウィジェットの配色。</p></div>
+    <div class="card"><h3>おそろい・SNS</h3><p>テーマをファイルにして友だちに送る。完成イメージを SNS 用の画像で保存。</p></div>
+  </div>
+
+  <h2>壁紙について</h2>
+  <p class="note">iOS の仕様上、アプリから壁紙を直接設定することはできません。LockCanvas は作成した壁紙を写真に保存し、設定手順を案内します。パーツはウィジェットなので、一度置けば以後は自動で更新されます。</p>
+
+  <h2>Premium（サブスクリプション）</h2>
+  <ul>
+    <li>テーマ無制限、自作の単語帳・ことばの束を無制限に</li>
+    <li>目標・時間割・タイマー・回数・気分・記念日リスト・写真の日めくり・ふたりの伝言板</li>
+    <li>リング・育てる・今年の進み具合の表示、プレミアムの枠とフォント</li>
+    <li>すべてのレシピ・壁紙テンプレート・素材</li>
+  </ul>
+
+  <h2>動作環境</h2>
+  <p>iPhone / iOS 17.0 以上。サーバーを持たず、作成したデータは端末内に保存されます（ふたりの伝言板のみ、ご自身の iCloud を使います）。</p>
+
+  <h2>サポート・お問い合わせ</h2>
+  <p>ご要望・不具合は App Store のレビュー、または本ページ記載の連絡先までお知らせください。</p>
+  <p><a href="privacy.html">プライバシーポリシー</a></p>
+
+  <footer>
+    <p>© 2026 Fumiya Sakaino</p>
+  </footer>
+</main>
+</body>
+</html>
