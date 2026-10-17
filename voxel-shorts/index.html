@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>voxel-shorts | YouTube 動画アップロードツール</title>
+<style>
+  body { margin: 0; background: #fff; color: #1a1a2e; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.8; }
+  main { max-width: 720px; margin: 0 auto; padding: 48px 20px 80px; }
+  h1 { font-size: 1.6rem; margin: 0 0 .3em; }
+  h2 { font-size: 1.15rem; margin: 2em 0 .5em; border-left: 4px solid #b3261e; padding-left: .6em; }
+  .sub { color: #5d5a55; margin-bottom: 2em; }
+  .yt { display: inline-block; background: #ff0000; color: #fff; font-weight: 700; padding: .1em .6em; border-radius: 6px; }
+  nav a { margin-right: 1.2em; }
+  hr { border: 0; border-top: 1px solid #e6e1da; margin: 3em 0; }
+  footer { color: #5d5a55; font-size: .85rem; }
+  a { color: #8c1d18; }
+  code { background: #f3f1ee; padding: 0 .3em; border-radius: 4px; }
+</style>
+</head>
+<body>
+<main>
+  <nav><a href="./">Home</a><a href="privacy.html">プライバシーポリシー / Privacy Policy</a><a href="terms.html">利用規約 / Terms of Service</a></nav>
+  <h1>voxel-shorts</h1>
+  <p class="sub">自分のチャンネル専用の YouTube 動画アップロードツール（<span class="yt">YouTube</span> API Services を使用）</p>
+
+  <p>voxel-shorts は、Fumiya Sakaino が運営する YouTube チャンネル「<a href="https://www.youtube.com/@sonan-jikenbo">遭難事件簿 アニメで分かる実話事故解説（@sonan-jikenbo）</a>」に、運営者自身が制作した動画をアップロードするための個人用ツールです。運営者のパソコン上でだけ動くコマンドラインのプログラムで、一般には公開・配布していません。</p>
+
+  <h2>できること</h2>
+  <ul>
+    <li>運営者が制作した動画（本編・ショート）を、YouTube Data API の <code>videos.insert</code> でアップロードする</li>
+    <li>タイトル・説明・タグを設定する</li>
+    <li>サムネイル（<code>thumbnails.set</code>）と日本語字幕（<code>captions.insert</code>）を設定する</li>
+  </ul>
+  <p>他人のチャンネルや他人のデータには一切アクセスしません。視聴データ・コメント・他のユーザーの情報は取得しません。</p>
+
+  <h2>YouTube API Services の利用について</h2>
+  <p>本ツールは YouTube API Services を使用しています。本ツールを使うことで、<a href="https://www.youtube.com/t/terms">YouTube 利用規約</a>に同意したものとみなされます。Google によるデータの取り扱いは <a href="http://www.google.com/policies/privacy">Google プライバシーポリシー</a>をご覧ください。</p>
+  <p>本ツールのプライバシーポリシーは<a href="privacy.html">こちら</a>、利用規約は<a href="terms.html">こちら</a>です。</p>
+
+  <hr>
+
+  <h1>voxel-shorts</h1>
+  <p class="sub">A private upload tool for the owner's own channel (uses <span class="yt">YouTube</span> API Services)</p>
+
+  <p>voxel-shorts is a personal command-line tool used only by its operator, Fumiya Sakaino, to upload self-produced videos to the operator's own YouTube channel, <a href="https://www.youtube.com/@sonan-jikenbo">遭難事件簿 アニメで分かる実話事故解説 (@sonan-jikenbo)</a>. It runs only on the owner's computer and is not offered or distributed to anyone else.</p>
+
+  <h2>What it does</h2>
+  <ul>
+    <li>Uploads the owner's own videos (long-form and Shorts) with the YouTube Data API <code>videos.insert</code></li>
+    <li>Sets the title, description and tags</li>
+    <li>Sets a custom thumbnail (<code>thumbnails.set</code>) and Japanese captions (<code>captions.insert</code>)</li>
+  </ul>
+  <p>It never accesses other users' channels or data. It does not read viewer data, comments, or any other user's information.</p>
+
+  <h2>Use of YouTube API Services</h2>
+  <p>This tool uses YouTube API Services. By using this tool, you agree to be bound by the <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>. See the <a href="http://www.google.com/policies/privacy">Google Privacy Policy</a> for how Google handles data.</p>
+  <p>Read this tool's <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>.</p>
+
+  <footer><p>Last updated: 2026-10-17　&copy; 2026 Fumiya Sakaino</p></footer>
+</main>
+</body>
+</html>
