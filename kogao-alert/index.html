@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小顔アラート | 決まった時間に、3分だけ。</title>
+<meta name="description" content="毎日決まった時間に知らせて、3分の小顔運動をお手本動画と音声で一緒に。プレミアムではカメラで動きを採点し、AI が毎日の顔の変化を見比べます。">
+<link rel="apple-touch-icon" href="icon-180.png">
+<style>
+  :root {
+    --bg: #FBF7F5; --card: #fff; --line: #EFE6E2; --ink: #2A2326; --sub: #7A7074;
+    --rose: #E2667A; --rose-dark: #C9475C; --rose-soft: #FBE5E8; --mint: #3FB58A; --radius: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif;
+         color: var(--ink); background: var(--bg); line-height: 1.75; -webkit-font-smoothing: antialiased; }
+  a { color: var(--rose-dark); }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+  section { padding: 64px 0; }
+  section.white { background: #fff; }
+  h2 { font-size: 26px; line-height: 1.4; margin-bottom: 10px; }
+  .lead { color: var(--sub); max-width: 640px; }
+  .eyebrow { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .12em; color: var(--rose-dark);
+             background: var(--rose-soft); padding: 3px 10px; border-radius: 999px; margin-bottom: 12px; }
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(251,247,245,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  nav .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; text-decoration: none; color: var(--ink); }
+  nav .brand img { width: 30px; height: 30px; border-radius: 8px; }
+  nav .links a { margin-left: 18px; font-size: 14px; text-decoration: none; color: var(--sub); }
+  .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; padding: 64px 20px 56px; }
+  .hero h1 { font-size: 40px; line-height: 1.3; letter-spacing: .02em; }
+  .hero p { color: var(--sub); margin-top: 14px; font-size: 16px; }
+  .hero .media { border-radius: 28px; overflow: hidden; box-shadow: 0 24px 60px -24px rgba(120,50,70,.35); aspect-ratio: 1; }
+  .hero .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .note { font-size: 12px; color: var(--sub); margin-top: 8px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+  .card { background: var(--card); border-radius: var(--radius); padding: 20px; border: 1px solid var(--line); }
+  .card h3 { font-size: 16px; margin-bottom: 6px; }
+  .card p { font-size: 14px; color: var(--sub); }
+  .steps { counter-reset: s; display: grid; gap: 12px; margin-top: 24px; max-width: 640px; }
+  .steps li { list-style: none; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px 14px 56px; position: relative; }
+  .steps li::before { counter-increment: s; content: counter(s); position: absolute; left: 16px; top: 14px; width: 26px; height: 26px; border-radius: 50%;
+                      background: var(--rose-soft); color: var(--rose-dark); font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+  .two video { width: 100%; max-width: 360px; border-radius: 22px; display: block; margin: 0 auto; }
+  table { width: 100%; border-collapse: collapse; margin-top: 24px; background: #fff; border-radius: var(--radius); overflow: hidden; }
+  th, td { padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: 14px; text-align: left; vertical-align: top; }
+  th { background: var(--rose-soft); font-size: 13px; }
+  td.c { text-align: center; }
+  .price { display: flex; gap: 16px; margin-top: 18px; flex-wrap: wrap; }
+  .price div { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; min-width: 180px; }
+  .price b { font-size: 24px; display: block; }
+  .price span { font-size: 12px; color: var(--sub); }
+  details { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; margin-top: 10px; }
+  summary { font-weight: 700; cursor: pointer; }
+  details p { margin-top: 8px; color: var(--sub); font-size: 14px; }
+  footer { padding: 40px 0 60px; color: var(--sub); font-size: 13px; }
+  footer a { margin-right: 16px; }
+  @media (max-width: 760px) {
+    .hero, .two { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 30px; }
+    .grid { grid-template-columns: 1fr; }
+    nav .links a:not(:last-child) { display: none; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#"><img src="icon-180.png" alt="">小顔アラート</a>
+    <div class="links"><a href="#features">できること</a><a href="#plans">プラン</a><a href="#faq">よくある質問</a><a href="#support">サポート</a></div>
+  </div>
+</nav>
+
+<div class="wrap hero">
+  <div>
+    <span class="eyebrow">100日チャレンジ</span>
+    <h1>決まった時間に、<br>3分だけ。</h1>
+    <p>小顔運動を毎日続けたいのに、忘れたり、なあなあになったり。小顔アラートは、決めた時間に知らせて、通知から1タップでお手本動画と音声ガイドの3分間が始まります。メニューはアプリが用意しているので、選んでこなすだけです。</p>
+  </div>
+  <div>
+    <div class="media"><img src="guide.jpg" alt="お手本動画の一場面（あいうべの「あ」）"></div>
+    <p class="note">お手本の人物は AI で作成した画像です（実在の人物ではありません）。</p>
+  </div>
+</div>
+
+<section class="white" id="features">
+  <div class="wrap">
+    <span class="eyebrow">できること</span>
+    <h2>知らせる、一緒にやる、続きを見える化する</h2>
+    <div class="grid">
+      <div class="card"><h3>決まった時間にお知らせ</h3><p>既定は朝8時と夜21時。通知の「始める」で運動画面が直接開きます。「10分後にもう一度」もあります。</p></div>
+      <div class="card"><h3>お手本動画と音声ガイド</h3><p>あいうべ、頬ふくらまし、舌回しなど6種目を各30秒。テンポに合わせて掛け声が入ります。</p></div>
+      <div class="card"><h3>100日チャレンジ</h3><p>運動のあとに今日の顔を1枚。連続日数と節目（7・30・50・100日）で続けた分が見えます。</p></div>
+      <div class="card"><h3>カメラで採点（プレミアム）</h3><p>前面カメラで顔の動きを数え、回数・大きさ・キープの3項目で100点満点。映像は保存も送信もしません。</p></div>
+      <div class="card"><h3>AI が毎日見比べる（プレミアム）</h3><p>今日・昨日・1日目の顔を AI が見比べて、むくみ・左右差・フェイスラインの所見をひとことで。</p></div>
+      <div class="card"><h3>タイムラプス</h3><p>毎日の顔を目の位置でそろえ、明るさも合わせて並べます。期間の上限はありません。</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap two">
+    <div>
+      <span class="eyebrow">タイムラプス</span>
+      <h2>撮る場所が少しずれても、<br>顔の位置はそろう</h2>
+      <p class="lead">撮影のたびに距離や傾き、明るさは変わります。アプリが端末の中で両目の位置を見つけてそろえ、色味も合わせてから並べるので、変化だけが見えます。</p>
+      <p class="note">動画は AI で作成した見本です。効果には個人差があり、結果を約束するものではありません。</p>
+    </div>
+    <video src="timelapse.mp4" autoplay loop muted playsinline></video>
+  </div>
+</section>
+
+<section class="white">
+  <div class="wrap">
+    <span class="eyebrow">使い方</span>
+    <h2>はじめの1分で準備おわり</h2>
+    <ol class="steps">
+      <li>やる時間を決める（1日2回がおすすめ。あとから変えられます）</li>
+      <li>時間になったら通知の「始める」をタップ</li>
+      <li>お手本に合わせて3分。終わったら今日の顔を1枚</li>
+    </ol>
+  </div>
+</section>
+
+<section id="plans">
+  <div class="wrap">
+    <span class="eyebrow">プラン</span>
+    <h2>無料で始めて、必要ならプレミアム</h2>
+    <table>
+      <tr><th></th><th>無料</th><th>プレミアム</th></tr>
+      <tr><td>アラート</td><td>1日2回まで</td><td>1日5回まで・マナーモードでも鳴らす</td></tr>
+      <tr><td>コース</td><td>スタンダード3分</td><td>すべてのコース</td></tr>
+      <tr><td>運動</td><td>お手本動画・音声ガイド・タイマー</td><td>＋カメラで採点</td></tr>
+      <tr><td>AI</td><td>-</td><td>AIコーチ・今日の評価・フェイスチェック</td></tr>
+      <tr><td>記録</td><td>直近7日のカレンダー</td><td>全期間・点数のグラフ</td></tr>
+      <tr><td>タイムラプス</td><td>見る</td><td>＋動画で保存</td></tr>
+      <tr><td>広告</td><td>バナー広告あり</td><td>なし</td></tr>
+    </table>
+    <div class="price">
+      <div><b>¥480 / 月</b><span>最初の7日間は無料</span></div>
+      <div><b>¥3,800 / 年</b><span>最初の7日間は無料</span></div>
+    </div>
+    <p class="note">価格は日本の App Store での税込価格です。無料期間の終了後は自動で更新されます。解約は iPhone の「設定 &gt; Apple アカウント &gt; サブスクリプション」から行えます。</p>
+  </div>
+</section>
+
+<section class="white" id="faq">
+  <div class="wrap">
+    <span class="eyebrow">よくある質問</span>
+    <h2>よくある質問</h2>
+    <details><summary>カメラの映像や顔の写真は送られますか？</summary><p>運動中の映像は端末の中で数値にするだけで、保存も送信もしません。顔の写真は端末に保存します。プレミアムで AI の評価・フェイスチェックを使ったときだけ、写真を AI に送ります（中継サーバーには保存しません）。詳しくは<a href="privacy.html">プライバシーポリシー</a>をご覧ください。</p></details>
+    <details><summary>カメラの採点はどの iPhone で使えますか？</summary><p>Face ID に対応した iPhone（TrueDepth カメラのある機種）で使えます。対応していない機種でも、お手本動画とタイマーで運動できます。</p></details>
+    <details><summary>マナーモード中でも鳴らせますか？</summary><p>プレミアムの「マナーモードでも鳴らす」をオンにすると、iOS 26.1 以上で目覚ましと同じ鳴り方になります。</p></details>
+    <details><summary>どれくらいで効果が出ますか？</summary><p>効果には個人差があり、アプリは結果を約束するものではありません。AI の所見も見た目についての参考で、医療的な診断ではありません。痛みや違和感があるときは中止してください。</p></details>
+    <details><summary>100日を過ぎたらどうなりますか？</summary><p>記録と日数はそのまま続きます。タイムラプスも始めた日から今日まで全部を再生できます。</p></details>
+    <details><summary>購入を別の iPhone に移せますか？</summary><p>同じ Apple アカウントでサインインし、設定の「購入を復元」をタップしてください。</p></details>
+  </div>
+</section>
+
+<section id="support">
+  <div class="wrap">
+    <span class="eyebrow">サポート</span>
+    <h2>サポート</h2>
+    <p class="lead">ご質問・不具合のご報告は、App Store のアプリのページにある「Appサポート」からご連絡ください。</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><a href="privacy.html">プライバシーポリシー</a><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">利用規約（Apple 標準 EULA）</a></p>
+    <p>&copy; 2026 Fumiya Sakaino</p>
+  </div>
+</footer>
+</body>
+</html>
