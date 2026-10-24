@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>プライバシーポリシー / Privacy Policy | Sharpli</title>
+<style>
+  body { margin: 0; background: #fff; color: #2A2326; font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.8; }
+  main { max-width: 720px; margin: 0 auto; padding: 48px 20px 80px; }
+  h1 { font-size: 1.6rem; margin: 0 0 .3em; }
+  h2 { font-size: 1.15rem; margin: 2em 0 .5em; border-left: 4px solid #E2667A; padding-left: .6em; }
+  h3 { font-size: 1rem; margin: 1.4em 0 .3em; }
+  .sub { color: #8A7F83; margin-bottom: 2em; }
+  ul { padding-left: 1.4em; }
+  hr { border: 0; border-top: 1px solid #EFE6E2; margin: 3em 0; }
+  footer { color: #8A7F83; font-size: .85rem; }
+  a { color: #C9475C; }
+  .langbar { display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 24px; }
+  .langbar a { text-decoration: none; font-size: .85rem; padding: 2px 12px; border: 1px solid #EFE6E2; border-radius: 999px; }
+</style>
+</head>
+<body>
+<main>
+  <nav class="langbar"><a href="#ja" lang="ja">日本語</a><a href="#en" lang="en">English</a><a href="#es" lang="es">Español</a></nav>
+  <div id="ja" lang="ja">
+  <h1>プライバシーポリシー</h1>
+  <p class="sub">Sharpli（シャープリ）</p>
+
+  <p>最終更新日：2026年10月24日<br>開発者：Fumiya Sakaino</p>
+
+  <p>Sharpli（シャープリ、以下「本アプリ」）は、決まった時間に知らせて小顔運動を行う iPhone アプリです。運動の記録と顔の写真は端末内に保存します。ログインやアカウント登録はありません。ネットワークを使うのは、App Store の購入処理、プレミアムの AI 機能を使ったとき、無料プランでの広告表示の3つだけです。アプリ内に分析 SDK やクラッシュレポート SDK は含まれていません。</p>
+
+  <h2>端末内にだけ保存する情報</h2>
+  <ul>
+    <li>運動の記録（日時・コース・点数）、アラートの時刻などの設定</li>
+    <li>「今日の顔」「フェイスチェック」で撮った写真</li>
+  </ul>
+  <p>これらは開発者のサーバーには送られません（下の「AI 機能」を使ったときを除きます）。</p>
+
+  <h2>カメラ</h2>
+  <p>運動中の採点（プレミアム）では、前面カメラの映像から顔の動き（口・頬・目・頭の向き）を端末内で数値にします。運動中の映像は保存も送信もしません。「今日の顔」「フェイスチェック」では写真を1枚撮り、端末内に保存します。カメラの許可は、はじめてカメラを使うときにだけ求めます。</p>
+
+  <h2>AI 機能（プレミアムのみ）</h2>
+  <p>次の機能を使ったときだけ、開発者の中継サーバー（Cloudflare Workers）を経由して Anthropic 社の API に送信します。</p>
+  <ul>
+    <li>AIコーチ：運動の点数（数字）と種目名だけ。画像は送りません</li>
+    <li>AIの今日の評価：今日・昨日・1日目の顔の写真（縮小した画像）</li>
+    <li>AIフェイスチェック：撮った顔の写真1枚と、前回の所見</li>
+  </ul>
+  <p>送信した写真と点数は、所見とアドバイスを作るためだけに使い、中継サーバーには保存しません（ログにも残しません）。Anthropic 社での取り扱いは同社のポリシーに従います。AI の所見は見た目についての参考であり、医療的な診断ではありません。</p>
+  <p>プレミアムの会員であることを確かめるため、App Store の取引 ID を中継サーバーに送り、Apple の App Store Server API で確認します。中継サーバーには、取引 ID にひもづく1日の利用回数（最長48時間で自動削除）と、会員確認の結果（最長6時間で自動削除）だけを保存します。氏名やメールアドレスなど、お客様個人を特定する情報は受け取りません。</p>
+
+  <h2>広告（無料プランのみ）</h2>
+  <p>無料プランでは Google AdMob のバナー広告を表示します。広告の配信のため、Google が端末の情報（広告識別子、IP アドレス、広告の表示や操作の状況など）を収集・利用することがあります。広告識別子は、アプリが表示する「トラッキングの許可」で許可した場合にだけ使われます。許可しなくてもアプリのすべての機能を使えます。欧州経済領域・英国では、Google の同意画面で広告の取り扱いを選べ、アプリの設定からいつでも変更できます。Google での取り扱いは <a href="https://policies.google.com/technologies/partner-sites?hl=ja">Google のポリシー</a> に従います。</p>
+  <p>プレミアムでは広告を表示せず、広告 SDK も動かしません。</p>
+
+  <h2>購入情報</h2>
+  <p>サブスクリプション（プレミアム）の購入・復元・更新は Apple の App Store（StoreKit）が処理します。開発者はお客様の氏名・住所・カード情報を受け取りません。</p>
+
+  <h2>通知・アラーム・写真</h2>
+  <ul>
+    <li>小顔タイムのお知らせは端末内のローカル通知です。サーバーへ情報を送りません</li>
+    <li>「マナーモードでも鳴らす」は iOS のアラーム機能（AlarmKit）を端末内で使います</li>
+    <li>タイムラプスを「動画で保存」したときだけ、写真アプリへの追加を許可していただき、動画を保存します。写真アプリから読み取ることはありません</li>
+  </ul>
+
+  <h2>収集しない情報</h2>
+  <ul>
+    <li>位置情報、連絡先、マイクの音声、健康データ</li>
+    <li>アプリ内での行動分析（分析 SDK は入っていません）</li>
+  </ul>
+
+  <h2>データの削除</h2>
+  <ul>
+    <li>顔の写真と記録：アプリを削除すると、端末内のすべてのデータが消えます</li>
+    <li>中継サーバーの利用回数・会員確認の結果：最長48時間で自動で消えます</li>
+    <li>広告：iOS の「設定 &gt; プライバシーとセキュリティ &gt; トラッキング」で許可を取り消せます</li>
+  </ul>
+
+  <h2>お子様の利用</h2>
+  <p>本アプリは 13 歳未満の方を対象としていません。</p>
+
+  <h2>変更</h2>
+  <p>本ポリシーを変更する場合、このページでお知らせします。</p>
+
+  <h2>連絡先</h2>
+  <p><a href="https://fumy98.github.io/sharpli/">https://fumy98.github.io/sharpli/</a>（サポート）</p>
+
+  </div>
+
+  <hr>
+  <div id="en" lang="en">
+  <h1>Privacy Policy</h1>
+  <p class="sub">Sharpli</p>
+  <p>Last updated: October 24, 2026<br>Developer: Fumiya Sakaino</p>
+  <p>Sharpli is an iPhone app that reminds you at set times to do a short face workout. Your workout records and face photos are stored on your device. There is no login or account. The app uses the network for only three things: App Store purchases, Premium AI features when you use them, and banner ads on the free plan. No analytics or crash-reporting SDKs are included.</p>
+
+  <h2>Data stored only on your device</h2>
+  <ul>
+    <li>Workout records (date, course, score) and settings such as alert times</li>
+    <li>Photos taken with "Today's Face" and "Face Check"</li>
+  </ul>
+  <p>These are not sent to the developer's servers, except when you use the AI features described below.</p>
+
+  <h2>Camera</h2>
+  <p>For camera scoring (Premium), the front camera's video is turned into numbers on your device (movements of the mouth, cheeks, eyes and head). Workout video is never saved or sent. "Today's Face" and "Face Check" take one photo and store it on your device. Camera permission is requested only the first time you use the camera.</p>
+
+  <h2>AI features (Premium only)</h2>
+  <p>Only when you use the following features, data is sent through the developer's relay server (Cloudflare Workers) to Anthropic's API.</p>
+  <ul>
+    <li>AI Coach: workout scores (numbers) and exercise names only. No images</li>
+    <li>Daily AI check-in: photos of your face from today, yesterday and Day 1 (downscaled)</li>
+    <li>AI Face Check: one face photo you take, and the previous notes</li>
+  </ul>
+  <p>Photos and scores are used only to create notes and tips and are not stored on the relay server (not even in logs). Anthropic handles the data under its own policies. AI notes are visual observations, not a medical diagnosis.</p>
+  <p>To confirm your Premium membership, your App Store transaction ID is sent to the relay server and verified with Apple's App Store Server API. The relay server stores only the daily usage count linked to the transaction ID (deleted automatically within 48 hours) and the verification result (deleted automatically within 6 hours). We do not receive your name, email address or any other information that identifies you.</p>
+
+  <h2>Ads (free plan only)</h2>
+  <p>The free plan shows Google AdMob banner ads. To deliver ads, Google may collect and use device information (advertising identifier, IP address, ad views and interactions, etc.). The advertising identifier is used only if you allow it in the app's tracking prompt. You can use every feature without allowing it. In the EEA and UK, you can choose how ads use your data in Google's consent form and change it anytime in the app's settings. Google handles the data under <a href="https://policies.google.com/technologies/partner-sites?hl=en">Google's policies</a>.</p>
+  <p>Premium shows no ads and does not run the ad SDK.</p>
+
+  <h2>Purchases</h2>
+  <p>Subscription (Premium) purchases, restores and renewals are processed by Apple's App Store (StoreKit). The developer does not receive your name, address or card details.</p>
+
+  <h2>Notifications, alarms and Photos</h2>
+  <ul>
+    <li>Workout reminders are local notifications on your device. Nothing is sent to a server</li>
+    <li>"Ring in Silent mode" uses iOS's alarm feature (AlarmKit) on your device</li>
+    <li>Only when you tap "Save Video" for a time-lapse do we ask for permission to add to Photos and save the video. The app never reads from Photos</li>
+  </ul>
+
+  <h2>Data we do not collect</h2>
+  <ul>
+    <li>Location, contacts, microphone audio, health data</li>
+    <li>In-app behavior analytics (no analytics SDK is included)</li>
+  </ul>
+
+  <h2>Deleting your data</h2>
+  <ul>
+    <li>Face photos and records: deleting the app removes all data on your device</li>
+    <li>Usage counts and verification results on the relay server: deleted automatically within 48 hours</li>
+    <li>Ads: you can turn off tracking in iOS Settings &gt; Privacy &amp; Security &gt; Tracking</li>
+  </ul>
+
+  <h2>Children</h2>
+  <p>This app is not directed at children under 13.</p>
+
+  <h2>Changes</h2>
+  <p>If we change this policy, we will post the update on this page.</p>
+
+  <h2>Contact</h2>
+  <p><a href="https://fumy98.github.io/sharpli/#en">https://fumy98.github.io/sharpli/</a> (Support)</p>
+  <p>If this English version differs from the Japanese version, the Japanese version prevails.</p>
+  </div>
+
+  <hr>
+  <div id="es" lang="es">
+  <h1>Política de privacidad</h1>
+  <p class="sub">Sharpli</p>
+  <p>Última actualización: 24 de octubre de 2026<br>Desarrollador: Fumiya Sakaino</p>
+  <p>Sharpli es una app para iPhone que te avisa a horas fijas para hacer un breve ejercicio facial. Tus registros y las fotos de tu cara se guardan en tu dispositivo. No hay inicio de sesión ni cuenta. La app usa la red solo para tres cosas: compras en la App Store, las funciones de IA de Premium cuando las usas y los anuncios del plan gratuito. No incluye SDK de analítica ni de informes de errores.</p>
+
+  <h2>Datos que se guardan solo en tu dispositivo</h2>
+  <ul>
+    <li>Registros de ejercicio (fecha, curso, puntuación) y ajustes como las horas de aviso</li>
+    <li>Fotos tomadas con "Today's Face" y "Face Check"</li>
+  </ul>
+  <p>No se envían a los servidores del desarrollador, salvo cuando usas las funciones de IA descritas abajo.</p>
+
+  <h2>Cámara</h2>
+  <p>Para la puntuación con la cámara (Premium), el video de la cámara frontal se convierte en números dentro de tu dispositivo (movimientos de boca, mejillas, ojos y cabeza). El video del ejercicio nunca se guarda ni se envía. "Today's Face" y "Face Check" toman una foto y la guardan en tu dispositivo. El permiso de cámara se pide solo la primera vez que la usas.</p>
+
+  <h2>Funciones de IA (solo Premium)</h2>
+  <p>Solo cuando usas las siguientes funciones, los datos se envían a través del servidor intermedio del desarrollador (Cloudflare Workers) a la API de Anthropic.</p>
+  <ul>
+    <li>AI Coach: solo las puntuaciones (números) y los nombres de los ejercicios. Sin imágenes</li>
+    <li>Revisión diaria con IA: fotos de tu cara de hoy, ayer y el día 1 (reducidas)</li>
+    <li>AI Face Check: una foto de tu cara y las notas anteriores</li>
+  </ul>
+  <p>Las fotos y puntuaciones se usan solo para crear notas y consejos y no se guardan en el servidor intermedio (ni siquiera en los registros). Anthropic trata los datos según sus propias políticas. Las notas de la IA son observaciones visuales, no un diagnóstico médico.</p>
+  <p>Para confirmar tu suscripción Premium, el ID de transacción de la App Store se envía al servidor intermedio y se verifica con la App Store Server API de Apple. El servidor intermedio guarda solo el número de usos diarios vinculado al ID de transacción (se borra automáticamente en 48 horas como máximo) y el resultado de la verificación (se borra en 6 horas como máximo). No recibimos tu nombre, correo electrónico ni ningún otro dato que te identifique.</p>
+
+  <h2>Anuncios (solo plan gratuito)</h2>
+  <p>El plan gratuito muestra anuncios de banner de Google AdMob. Para mostrar anuncios, Google puede recopilar y usar información del dispositivo (identificador de publicidad, dirección IP, visualizaciones e interacciones con anuncios, etc.). El identificador de publicidad solo se usa si lo permites en el aviso de seguimiento de la app. Puedes usar todas las funciones sin permitirlo. En el EEE y el Reino Unido puedes elegir cómo se usan tus datos en el formulario de consentimiento de Google y cambiarlo cuando quieras en los ajustes de la app. Google trata los datos según <a href="https://policies.google.com/technologies/partner-sites?hl=es">sus políticas</a>.</p>
+  <p>Premium no muestra anuncios ni ejecuta el SDK de anuncios.</p>
+
+  <h2>Compras</h2>
+  <p>Las compras, restauraciones y renovaciones de la suscripción (Premium) las procesa la App Store de Apple (StoreKit). El desarrollador no recibe tu nombre, dirección ni datos de tarjeta.</p>
+
+  <h2>Notificaciones, alarmas y Fotos</h2>
+  <ul>
+    <li>Los avisos son notificaciones locales en tu dispositivo. No se envía nada a ningún servidor</li>
+    <li>"Ring in Silent mode" usa la función de alarma de iOS (AlarmKit) en tu dispositivo</li>
+    <li>Solo cuando tocas "Save Video" en un time-lapse pedimos permiso para añadir a Fotos y guardar el video. La app nunca lee tu fototeca</li>
+  </ul>
+
+  <h2>Datos que no recopilamos</h2>
+  <ul>
+    <li>Ubicación, contactos, audio del micrófono, datos de salud</li>
+    <li>Análisis del comportamiento en la app (no incluye SDK de analítica)</li>
+  </ul>
+
+  <h2>Eliminar tus datos</h2>
+  <ul>
+    <li>Fotos y registros: al eliminar la app se borran todos los datos del dispositivo</li>
+    <li>Contadores de uso y resultados de verificación en el servidor intermedio: se borran automáticamente en 48 horas como máximo</li>
+    <li>Anuncios: puedes desactivar el seguimiento en Ajustes de iOS &gt; Privacidad y seguridad &gt; Rastreo</li>
+  </ul>
+
+  <h2>Menores</h2>
+  <p>Esta app no está dirigida a menores de 13 años.</p>
+
+  <h2>Cambios</h2>
+  <p>Si cambiamos esta política, lo publicaremos en esta página.</p>
+
+  <h2>Contacto</h2>
+  <p><a href="https://fumy98.github.io/sharpli/#es">https://fumy98.github.io/sharpli/</a> (Soporte)</p>
+  <p>La app está disponible en japonés e inglés. Si esta versión en español difiere de la versión en japonés, prevalece la versión en japonés.</p>
+  </div>
+  <footer><p>&copy; 2026 Fumiya Sakaino</p></footer>
+</main>
+</body>
+</html>
