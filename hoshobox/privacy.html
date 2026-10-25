@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プライバシーポリシー / Privacy Policy | HoshoBox</title>
+<style>
+  :root { --bg: #121316; --card: #1f2229; --line: #2c3038; --ink: #ecebe6; --muted: #9a9ea8; --navy-light: #8fb0e0; --amber-light: #f0c27a; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.8; margin: 0; -webkit-font-smoothing: antialiased; }
+  main { max-width: 760px; margin: 0 auto; padding: 40px 20px 80px; }
+  .lang { display: flex; gap: 6px; font-size: 13px; margin-bottom: 28px; }
+  .lang a { text-decoration: none; color: var(--muted); padding: 3px 12px; border: 1px solid var(--line); border-radius: 999px; }
+  .lang a:hover { color: var(--ink); }
+  h1 { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-weight: 600; font-size: 28px; margin: 0 0 4px; }
+  .sub { color: var(--muted); font-size: 14px; margin: 0 0 24px; }
+  h2 { font-size: 18px; margin-top: 36px; border-left: 4px solid var(--amber-light); padding-left: 10px; }
+  p, li { font-size: 15px; }
+  .updated { color: var(--muted); font-size: 14px; }
+  .table-wrap { overflow-x: auto; margin: 16px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--card); border: 1px solid var(--line); min-width: 560px; }
+  th, td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 600; background: #191b20; }
+  a { color: var(--navy-light); word-break: break-all; }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 64px 0 40px; }
+  footer { color: var(--muted); font-size: 13px; margin-top: 48px; }
+</style>
+</head>
+<body>
+<main>
+  <nav class="lang"><a href="#ja">日本語</a><a href="#en">English</a><a href="./">HoshoBox</a></nav>
+
+  <!-- ===================== 日本語 ===================== -->
+  <article id="ja" lang="ja">
+    <h1>プライバシーポリシー</h1>
+    <p class="sub">HoshoBox（iOS アプリ）</p>
+
+    <p>HoshoBox（以下「本アプリ」）は、利用者の情報を次のとおり取り扱います。</p>
+    <p class="updated">最終更新日: 2026年10月16日（リコールの確認・家族へのお知らせ・Apple でサインインを追記）</p>
+
+    <h2>1. 本アプリが扱う情報</h2>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>情報</th><th>保存場所</th><th>目的</th></tr></thead>
+      <tbody>
+        <tr><td>商品の情報（名前・メーカー・型番・製造番号・購入日・購入店・金額・メモ）</td><td>お使いの端末と、本アプリの保存サーバー</td><td>保証の管理・表示、機種変更や家族との共有</td></tr>
+        <tr><td>保証書・レシート・型番シールの写真</td><td>お使いの端末と、本アプリの保存サーバー</td><td>保証書の保管・表示</td></tr>
+        <tr><td>点検の記録</td><td>お使いの端末と、本アプリの保存サーバー</td><td>点検の履歴の表示</td></tr>
+        <tr><td>家族に見える呼び名（入力した場合のみ）</td><td>本アプリの保存サーバー</td><td>家族の画面での表示</td></tr>
+        <tr><td>アカウントの識別子（アプリが自動で作るランダムな値。メールアドレスや氏名は使いません）</td><td>本アプリの保存サーバーと、お使いの端末</td><td>データの持ち主の区別</td></tr>
+        <tr><td>Apple ID の識別子（「Apple でサインイン」で結び付けた場合のみ。名前とメールアドレスは受け取りません）</td><td>本アプリの保存サーバー</td><td>機種変更・再インストールのときのデータの引き継ぎ</td></tr>
+        <tr><td>通知の宛先（デバイストークン）</td><td>本アプリの保存サーバー</td><td>家族が商品を追加したときのお知らせ</td></tr>
+        <tr><td>写真から読み取った文字</td><td>読み取りの間だけ送信（下記2）</td><td>商品と保証期間の自動入力</td></tr>
+        <tr><td>端末ごとのランダムな識別子</td><td>本アプリの読み取りサーバー</td><td>AI読み取りの月間回数の管理</td></tr>
+        <tr><td>App Store の購入の取引番号</td><td>本アプリの読み取りサーバー（判定結果のみ最大6時間）</td><td>プレミアムの確認</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>保存サーバーは Supabase 社のサービス（東京リージョン）を使っています。保存サーバーのデータは、利用者ご本人と、ご本人が招待した家族だけが読み書きできるように設定しています。運営者は、障害の調査や法令に基づく場合を除き、内容を閲覧しません。</p>
+
+    <h2>2. AI読み取りについて</h2>
+    <p>写真の文字は、お使いの端末の中で読み取ります。写真そのものは読み取りのためには送信しません。</p>
+    <p>読み取った文字だけを本アプリの読み取りサーバー（Cloudflare 社のサービス上で動作）に送り、Anthropic 社の AI（Claude API）で商品名・型番・購入日・保証期間などの項目に振り分けます。送信した文字は振り分けのためだけに使い、読み取りサーバーには保存しません。Anthropic 社での取り扱いは同社の方針に従います（<a href="https://www.anthropic.com/legal/privacy">https://www.anthropic.com/legal/privacy</a>）。</p>
+    <p>AI読み取りを使わずに、手で入力して登録することもできます。</p>
+
+    <h2>2-2. リコールの確認について</h2>
+    <p>登録した商品がリコール（回収・無償修理など）の対象になっていないかを調べるため、週に1回ほど、メーカー名と型番を本アプリの読み取りサーバーに送り、消費者庁のリコール情報サイトで検索します。送るのはメーカー名と型番だけで、だれの商品かは送りません。同じ型番を何度も問い合わせないよう、型番ごとの検索結果を24時間だけ読み取りサーバーに置きます。</p>
+
+    <h2>3. 家族との共有</h2>
+    <p>「家族と共有」で招待リンクを送り、相手が参加すると、あなたの束に入っている商品・写真・点検の記録を、その家族も見たり追加したりできるようになります。招待リンクは7日で使えなくなります。共有はいつでもやめられ、参加した家族を外すこともできます。</p>
+
+    <h2>4. 第三者への提供</h2>
+    <p>法令に基づく場合を除き、利用者の情報を第三者に提供しません。広告の配信や、利用者を追跡するための情報の収集は行いません。</p>
+    <p>本アプリは、上記の目的のために次の事業者のサービスを利用しています。</p>
+    <ul>
+      <li>Supabase 社（データの保存）</li>
+      <li>Cloudflare 社（読み取りサーバー・招待のページ）</li>
+      <li>Anthropic 社（AI読み取り）</li>
+      <li>Apple 社（アプリ内課金・Apple でサインイン・プッシュ通知）</li>
+    </ul>
+
+    <h2>5. 通知</h2>
+    <p>点検のお知らせは、お使いの端末の中で予約するローカル通知です。</p>
+    <p>家族が商品を追加したときのお知らせは、Apple のプッシュ通知（APNs）で送ります。そのため、お使いの端末の通知の宛先（デバイストークン）と「家族が登録した商品も通知」の設定を保存サーバーに保存します。お知らせの文面には、追加した家族の呼び名と商品名が入ります。</p>
+
+    <h2>6. データの削除</h2>
+    <p>商品・写真・点検の記録は、アプリの中でいつでも削除できます。</p>
+    <p>アプリの「設定」→「データとアカウントを削除」を行うと、保存サーバーにあるあなたのアカウントと、あなたの束（商品・写真・点検と修理の記録）・通知の宛先がすべて削除されます。Apple ID と結び付けている場合は、本アプリへの「Apple でサインイン」の許可も取り消します。家族の束にあなたが追加した商品は、その束の持ち主のデータとして残ります。読み取りサーバーにある回数の記録は、40日で自動的に消えます。</p>
+
+    <h2>7. お問い合わせ</h2>
+    <p>運営者: Fumiya Sakaino<br>
+    お問い合わせ: アプリの「設定」→「お問い合わせ」、または App Store の本アプリのページに記載の連絡先まで。</p>
+
+    <h2>8. 改定</h2>
+    <p>本ポリシーを改定する場合は、このページで告知します。</p>
+  </article>
+
+  <hr>
+
+  <!-- ===================== English ===================== -->
+  <article id="en" lang="en">
+    <h1>Privacy Policy</h1>
+    <p class="sub">HoshoBox (iOS app)</p>
+
+    <p>HoshoBox (the "App") handles your information as follows.</p>
+    <p class="updated">Last updated: October 16, 2026</p>
+
+    <h2>1. Information the App handles</h2>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Information</th><th>Where it is stored</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>Item details (name, maker, model number, serial number, purchase date, store, price, notes)</td><td>Your device and the App's storage server</td><td>Managing and showing warranties; moving to a new phone; sharing with family</td></tr>
+        <tr><td>Photos of warranty cards, receipts and model labels</td><td>Your device and the App's storage server</td><td>Keeping and showing warranty documents</td></tr>
+        <tr><td>Check-up and repair records</td><td>Your device and the App's storage server</td><td>Showing your history</td></tr>
+        <tr><td>The name your family sees (only if you enter one)</td><td>The App's storage server</td><td>Showing it on your family's screens</td></tr>
+        <tr><td>An account identifier (a random value the App creates; no email address or name is used)</td><td>The App's storage server and your device</td><td>Telling whose data is whose</td></tr>
+        <tr><td>Your Apple ID identifier (only if you link "Sign in with Apple"; we don't receive your name or email address)</td><td>The App's storage server</td><td>Restoring your data after switching phones or reinstalling</td></tr>
+        <tr><td>A notification address (device token)</td><td>The App's storage server</td><td>Notifying you when family members add items</td></tr>
+        <tr><td>Text read from photos</td><td>Sent only while reading (see 2)</td><td>Filling in the product and warranty period</td></tr>
+        <tr><td>A random identifier per device</td><td>The App's reading server</td><td>Counting AI scans per month</td></tr>
+        <tr><td>App Store transaction IDs</td><td>The App's reading server (only the result, for up to 6 hours)</td><td>Confirming Premium</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>The storage server runs on Supabase (Tokyo region). Data on it can be read and written only by you and the family members you invite. The operator does not view its contents except to investigate problems or where required by law.</p>
+
+    <h2>2. AI scanning</h2>
+    <p>Text in photos is read on your device. The photos themselves are not sent for reading.</p>
+    <p>Only the text is sent to the App's reading server (running on Cloudflare) and sorted into fields such as product name, model number, purchase date and warranty period by Anthropic's AI (Claude API). The text is used only for this and is not stored on the reading server. Anthropic handles data according to its own policy (<a href="https://www.anthropic.com/legal/privacy">https://www.anthropic.com/legal/privacy</a>).</p>
+    <p>You can also add items manually without AI scanning.</p>
+
+    <h2>2-2. Recall checks</h2>
+    <p>To check whether your items are subject to a recall (return, free repair, etc.), about once a week the App sends maker names and model numbers to its reading server, which searches the Consumer Affairs Agency's recall site (Japan). Only maker names and model numbers are sent — not who owns them. To avoid repeating the same search, results per model number are kept on the reading server for 24 hours.</p>
+
+    <h2>3. Family sharing</h2>
+    <p>When you send an invite link from "Family Sharing" and someone joins, they can view and add the items, photos and records in your wallet. Invite links expire after 7 days. You can stop sharing or remove a member at any time.</p>
+
+    <h2>4. Sharing with third parties</h2>
+    <p>We do not provide your information to third parties except where required by law. We do not show ads or collect information to track you.</p>
+    <p>The App uses services from the following companies for the purposes above:</p>
+    <ul>
+      <li>Supabase (data storage)</li>
+      <li>Cloudflare (reading server and invite pages)</li>
+      <li>Anthropic (AI scanning)</li>
+      <li>Apple (in-app purchases, Sign in with Apple, push notifications)</li>
+    </ul>
+
+    <h2>5. Notifications</h2>
+    <p>Check-up reminders are local notifications scheduled on your device.</p>
+    <p>Notifications when family members add items are sent through Apple Push Notification service (APNs). For this, your device's notification address (device token) and your "Notify me about family items" setting are stored on the storage server. These notifications include your family member's name and the item name.</p>
+
+    <h2>6. Deleting your data</h2>
+    <p>You can delete items, photos and records in the App at any time.</p>
+    <p>"Settings" → "Delete Data and Account" deletes your account, your wallet (items, photos, check-up and repair records) and your notification addresses from the storage server. If you linked your Apple ID, the App's "Sign in with Apple" authorization is revoked as well. Items you added to a family member's wallet stay as that owner's data. Scan counts on the reading server are deleted automatically after 40 days.</p>
+
+    <h2>7. Contact</h2>
+    <p>Operator: Fumiya Sakaino<br>
+    Contact: "Settings" → "Contact Us" in the App, or the contact listed on the App's App Store page.</p>
+
+    <h2>8. Changes</h2>
+    <p>If we change this policy, we will announce it on this page.</p>
+  </article>
+
+  <footer>© 2026 Fumiya Sakaino</footer>
+</main>
+</body>
+</html>
