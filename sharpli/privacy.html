@@ -26,9 +26,9 @@
   <h1>プライバシーポリシー</h1>
   <p class="sub">Sharpli（シャープリ）</p>
 
-  <p>最終更新日：2026年10月24日<br>開発者：Fumiya Sakaino</p>
+  <p>最終更新日：2026年10月26日<br>開発者：Fumiya Sakaino</p>
 
-  <p>Sharpli（シャープリ、以下「本アプリ」）は、決まった時間に知らせて小顔運動を行う iPhone アプリです。運動の記録と顔の写真は端末内に保存します。ログインやアカウント登録はありません。ネットワークを使うのは、App Store の購入処理、プレミアムの AI 機能を使ったとき、無料プランでの広告表示の3つだけです。アプリ内に分析 SDK やクラッシュレポート SDK は含まれていません。</p>
+  <p>Sharpli（シャープリ、以下「本アプリ」）は、決まった時間に知らせて小顔運動を行う iPhone アプリです。運動の記録と顔の写真は端末内に保存します。ログインやアカウント登録はありません。ネットワークを使うのは、App Store の購入処理、AI 機能を使ったとき（プレミアム、または無料のお試しのフェイスチェック1回）、無料プランでの広告表示の3つだけです。アプリ内に分析 SDK やクラッシュレポート SDK は含まれていません。</p>
 
   <h2>端末内にだけ保存する情報</h2>
   <ul>
@@ -40,13 +40,14 @@
   <h2>カメラ</h2>
   <p>運動中の採点（プレミアム）では、前面カメラの映像から顔の動き（口・頬・目・頭の向き）を端末内で数値にします。運動中の映像は保存も送信もしません。「今日の顔」「フェイスチェック」では写真を1枚撮り、端末内に保存します。カメラの許可は、はじめてカメラを使うときにだけ求めます。</p>
 
-  <h2>AI 機能（プレミアムのみ）</h2>
+  <h2>AI 機能（プレミアム、または無料のお試し1回）</h2>
   <p>次の機能を使ったときだけ、開発者の中継サーバー（Cloudflare Workers）を経由して Anthropic 社の API に送信します。</p>
   <ul>
     <li>AIコーチ：運動の点数（数字）と種目名だけ。画像は送りません</li>
     <li>AIの今日の評価：今日・昨日・1日目の顔の写真（縮小した画像）</li>
     <li>AIフェイスチェック：撮った顔の写真1枚と、前回の所見</li>
   </ul>
+  <p>プレミアムでない方も、AIフェイスチェックを端末ごとに1回だけ無料で使えます。その際は、アプリが作ったランダムな端末 ID（お名前や連絡先とは結びつかないもの）を中継サーバーに送り、使用済みかどうかだけを記録します（期限なし）。</p>
   <p>送信した写真と点数は、所見とアドバイスを作るためだけに使い、中継サーバーには保存しません（ログにも残しません）。Anthropic 社での取り扱いは同社のポリシーに従います。AI の所見は見た目についての参考であり、医療的な診断ではありません。</p>
   <p>プレミアムの会員であることを確かめるため、App Store の取引 ID を中継サーバーに送り、Apple の App Store Server API で確認します。中継サーバーには、取引 ID にひもづく1日の利用回数（最長48時間で自動削除）と、会員確認の結果（最長6時間で自動削除）だけを保存します。氏名やメールアドレスなど、お客様個人を特定する情報は受け取りません。</p>
 
@@ -92,8 +93,8 @@
   <div id="en" lang="en">
   <h1>Privacy Policy</h1>
   <p class="sub">Sharpli</p>
-  <p>Last updated: October 24, 2026<br>Developer: Fumiya Sakaino</p>
-  <p>Sharpli is an iPhone app that reminds you at set times to do a short face workout. Your workout records and face photos are stored on your device. There is no login or account. The app uses the network for only three things: App Store purchases, Premium AI features when you use them, and banner ads on the free plan. No analytics or crash-reporting SDKs are included.</p>
+  <p>Last updated: October 26, 2026<br>Developer: Fumiya Sakaino</p>
+  <p>Sharpli is an iPhone app that reminds you at set times to do a short face workout. Your workout records and face photos are stored on your device. There is no login or account. The app uses the network for only three things: App Store purchases, AI features when you use them (Premium, or the one free trial Face Check), and banner ads on the free plan. No analytics or crash-reporting SDKs are included.</p>
 
   <h2>Data stored only on your device</h2>
   <ul>
@@ -105,13 +106,14 @@
   <h2>Camera</h2>
   <p>For camera scoring (Premium), the front camera's video is turned into numbers on your device (movements of the mouth, cheeks, eyes and head). Workout video is never saved or sent. "Today's Face" and "Face Check" take one photo and store it on your device. Camera permission is requested only the first time you use the camera.</p>
 
-  <h2>AI features (Premium only)</h2>
+  <h2>AI features (Premium, or one free trial)</h2>
   <p>Only when you use the following features, data is sent through the developer's relay server (Cloudflare Workers) to Anthropic's API.</p>
   <ul>
     <li>AI Coach: workout scores (numbers) and exercise names only. No images</li>
     <li>Daily AI check-in: photos of your face from today, yesterday and Day 1 (downscaled)</li>
     <li>AI Face Check: one face photo you take, and the previous notes</li>
   </ul>
+  <p>Even without Premium, you can use AI Face Check once per device for free. For that, the app sends a random device ID it creates (not linked to your name or contact details) to the relay server, which records only whether the free check has been used (no expiry).</p>
   <p>Photos and scores are used only to create notes and tips and are not stored on the relay server (not even in logs). Anthropic handles the data under its own policies. AI notes are visual observations, not a medical diagnosis.</p>
   <p>To confirm your Premium membership, your App Store transaction ID is sent to the relay server and verified with Apple's App Store Server API. The relay server stores only the daily usage count linked to the transaction ID (deleted automatically within 48 hours) and the verification result (deleted automatically within 6 hours). We do not receive your name, email address or any other information that identifies you.</p>
 
@@ -157,8 +159,8 @@
   <div id="es" lang="es">
   <h1>Política de privacidad</h1>
   <p class="sub">Sharpli</p>
-  <p>Última actualización: 24 de octubre de 2026<br>Desarrollador: Fumiya Sakaino</p>
-  <p>Sharpli es una app para iPhone que te avisa a horas fijas para hacer un breve ejercicio facial. Tus registros y las fotos de tu cara se guardan en tu dispositivo. No hay inicio de sesión ni cuenta. La app usa la red solo para tres cosas: compras en la App Store, las funciones de IA de Premium cuando las usas y los anuncios del plan gratuito. No incluye SDK de analítica ni de informes de errores.</p>
+  <p>Última actualización: 26 de octubre de 2026<br>Desarrollador: Fumiya Sakaino</p>
+  <p>Sharpli es una app para iPhone que te avisa a horas fijas para hacer un breve ejercicio facial. Tus registros y las fotos de tu cara se guardan en tu dispositivo. No hay inicio de sesión ni cuenta. La app usa la red solo para tres cosas: compras en la App Store, las funciones de IA cuando las usas (Premium, o el Face Check de prueba gratis) y los anuncios del plan gratuito. No incluye SDK de analítica ni de informes de errores.</p>
 
   <h2>Datos que se guardan solo en tu dispositivo</h2>
   <ul>
@@ -170,13 +172,14 @@
   <h2>Cámara</h2>
   <p>Para la puntuación con la cámara (Premium), el video de la cámara frontal se convierte en números dentro de tu dispositivo (movimientos de boca, mejillas, ojos y cabeza). El video del ejercicio nunca se guarda ni se envía. "Today's Face" y "Face Check" toman una foto y la guardan en tu dispositivo. El permiso de cámara se pide solo la primera vez que la usas.</p>
 
-  <h2>Funciones de IA (solo Premium)</h2>
+  <h2>Funciones de IA (Premium, o una prueba gratis)</h2>
   <p>Solo cuando usas las siguientes funciones, los datos se envían a través del servidor intermedio del desarrollador (Cloudflare Workers) a la API de Anthropic.</p>
   <ul>
     <li>AI Coach: solo las puntuaciones (números) y los nombres de los ejercicios. Sin imágenes</li>
     <li>Revisión diaria con IA: fotos de tu cara de hoy, ayer y el día 1 (reducidas)</li>
     <li>AI Face Check: una foto de tu cara y las notas anteriores</li>
   </ul>
+  <p>Aunque no tengas Premium, puedes usar AI Face Check una vez por dispositivo gratis. Para ello, la app envía al servidor intermedio un ID aleatorio del dispositivo (no vinculado a tu nombre ni a tus datos de contacto), que solo registra si la prueba gratis ya se usó (sin caducidad).</p>
   <p>Las fotos y puntuaciones se usan solo para crear notas y consejos y no se guardan en el servidor intermedio (ni siquiera en los registros). Anthropic trata los datos según sus propias políticas. Las notas de la IA son observaciones visuales, no un diagnóstico médico.</p>
   <p>Para confirmar tu suscripción Premium, el ID de transacción de la App Store se envía al servidor intermedio y se verifica con la App Store Server API de Apple. El servidor intermedio guarda solo el número de usos diarios vinculado al ID de transacción (se borra automáticamente en 48 horas como máximo) y el resultado de la verificación (se borra en 6 horas como máximo). No recibimos tu nombre, correo electrónico ni ningún otro dato que te identifique.</p>
 
