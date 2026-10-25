@@ -303,5 +303,18 @@
     <p>&copy; 2026 Fumiya Sakaino</p>
   </div>
 </footer>
+<script>
+// 動画などから来たときの utm_campaign を、App Store へのリンクの ct（キャンペーン名）に引き継ぐ。どこにも送信しない
+(function () {
+  var c = new URLSearchParams(location.search).get("utm_campaign");
+  if (!c || !/^[A-Za-z0-9_]{1,40}$/.test(c)) return;
+  document.querySelectorAll('a[href*="apps.apple.com"]').forEach(function (a) {
+    var u = new URL(a.href);
+    u.searchParams.set("ct", c);
+    if (!u.searchParams.has("mt")) u.searchParams.set("mt", "8");
+    a.href = u.toString();
+  });
+})();
+</script>
 </body>
 </html>
