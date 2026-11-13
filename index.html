@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>fumy98 apps</title>
-<meta name="description" content="個人開発者 fumy98 の iPhone アプリ。Someday・イタドリ・慶弔帳・あみゲージ。">
+<meta name="description" content="個人開発者 fumy98 の iPhone アプリ。毎日にちょうどいい、ちいさな道具を。">
 <meta property="og:title" content="fumy98 apps">
-<meta property="og:description" content="暮らしの小さな「面倒」を、ひとつずつ片づける iPhone アプリ。">
+<meta property="og:description" content="毎日にちょうどいい、ちいさな道具を。個人で開発している iPhone アプリ。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://fumy98.github.io/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,14 +22,6 @@
     --yellow: #ffd23f;
     --blue: #3fa9f5;
     --mint: #3fd1a0;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1d1a2e;
-      --paper: #26223b;
-      --ink: #fff3c4;
-      --muted: #c4bfd9;
-    }
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -52,25 +44,25 @@
   .splat svg, svg.dot { fill: currentColor; }
 
   header { position: relative; z-index: 2; }
-  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 76px; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
   .logo { font-size: 20px; font-weight: 900; text-decoration: none; letter-spacing: .04em; }
   .logo span { color: var(--pink); }
   header nav a { text-decoration: none; font-size: 14px; font-weight: 700; margin-left: 24px; }
   header nav a:hover { color: var(--pink); }
 
-  .hero { position: relative; padding: 88px 0 120px; overflow: hidden; }
+  .hero { position: relative; padding: 40px 0 56px; overflow: hidden; }
   .hero .wrap { z-index: 1; }
   .eyebrow {
     display: inline-block; background: var(--ink); color: var(--bg);
     font-size: 12px; font-weight: 700; letter-spacing: .2em; padding: 4px 14px; border-radius: 999px;
-    transform: rotate(-2deg); margin: 0 0 28px;
+    transform: rotate(-2deg); margin: 0 0 18px;
   }
-  .hero h1 { font-size: clamp(30px, 6vw, 56px); font-weight: 900; line-height: 1.45; margin: 0 0 28px; }
+  .hero h1 { font-size: clamp(28px, 5.4vw, 50px); font-weight: 900; line-height: 1.4; margin: 0 0 18px; }
   .mark { background: linear-gradient(transparent 58%, var(--pink) 58%, var(--pink) 90%, transparent 90%); padding: 0 .08em; }
   .hero p.lead { color: var(--muted); max-width: 520px; margin: 0; font-size: 16px; }
 
-  section { position: relative; padding: 88px 0; }
-  .head { margin-bottom: 40px; }
+  section { position: relative; padding: 48px 0; }
+  .head { margin-bottom: 24px; }
   section h2 { font-size: 30px; font-weight: 900; margin: 0; display: inline-block; position: relative; }
   section h2::after {
     content: ""; position: absolute; left: -6px; right: -10px; bottom: 4px; height: 12px; z-index: -1;
@@ -78,11 +70,11 @@
   }
   .head .sub { color: var(--muted); margin: 8px 0 0; font-size: 14px; }
 
-  .apps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .apps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
   .app {
     --c: var(--pink);
     position: relative; background: var(--paper); border: 3px solid var(--ink); border-radius: 22px;
-    padding: 30px 26px 26px; box-shadow: 6px 6px 0 var(--c);
+    padding: 22px 22px 20px; box-shadow: 6px 6px 0 var(--c);
     transition: transform .15s, box-shadow .15s;
   }
   .app:nth-child(2) { --c: var(--blue); }
@@ -92,41 +84,81 @@
   .app .dot { position: absolute; top: -26px; right: -18px; width: 76px; height: 76px; color: var(--c); }
   .app .no { position: absolute; top: -6px; right: 6px; width: 30px; text-align: center; font-weight: 900; font-size: 14px; color: var(--ink); }
   .app h3 { font-size: 24px; font-weight: 900; margin: 0; }
-  .app .tag { display: inline-block; font-size: 12.5px; font-weight: 700; margin: 6px 0 14px; padding: 1px 12px; border-radius: 999px; background: var(--c); color: #1d1a2e; }
-  .app p.desc { color: var(--muted); font-size: 14px; margin: 0 0 22px; }
+  .app .tag { display: inline-block; font-size: 12.5px; font-weight: 700; margin: 4px 0 10px; padding: 1px 12px; border-radius: 999px; background: var(--c); color: #1d1a2e; }
+  .app p.desc { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
   .app .links { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13.5px; font-weight: 700; }
   .app .links a { text-decoration: none; padding: 6px 16px; border-radius: 999px; border: 2px solid var(--ink); }
-  .app .links a:first-child { background: var(--ink); color: var(--paper); }
+  /* ボタン（ダウンロード・詳しく見る・プライバシー）をカードの下にそろえる。説明文の長さやラベルの有無で位置がずれないように */
+  .app { display: flex; flex-direction: column; }
+  .app .stores { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .app .stores .store { margin: 0; }
+  .app .title { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+  .app .icon { width: 64px; height: 64px; border-radius: 15px; border: 2px solid var(--ink); flex: none; background: #fff; }
+  .app .title .tag { margin: 4px 0 0; }
+  /* 実績: 月桂樹で数字を挟む（App Store の受賞表記のような、線だけの控えめな形） */
+  .app .badge { position: absolute; top: 18px; right: 52px; display: flex; align-items: center; gap: 2px; color: var(--ink); }
+  /* 葉は金（黄色）に紺のふち。枝は紺 */
+  .app .badge .laurel { width: 22px; height: 36px; fill: var(--yellow); stroke: var(--ink); stroke-width: .9; flex: none; overflow: visible; }
+  .app .badge .laurel.r { transform: scaleX(-1); }
+  .app .badge .count { display: flex; flex-direction: column; align-items: center; line-height: 1.05; }
+  .app .badge b { font-size: 17px; font-weight: 900; letter-spacing: .01em; }
+  .app .badge small { font-size: 9px; font-weight: 700; white-space: nowrap; }
+  @media (max-width: 560px) { .app .badge { position: static; align-self: flex-start; margin: -2px 0 10px; } }
+  .store { display: inline-flex; align-items: center; gap: 9px; background: var(--ink); color: var(--paper); text-decoration: none;
+    border-radius: 12px; padding: 7px 16px 7px 13px; margin: 0 0 14px; line-height: 1.15; font-weight: 900; font-size: 15px; }
+  .store small { display: block; font-size: 10px; font-weight: 700; opacity: .85; }
+  .store .apple { width: 18px; height: 22px; flex: none; fill: currentColor; }
+  a.store:hover { background: var(--c); color: #1d1a2e; }
+  /* 近日公開もダウンロードと同じ大きさ・同じ濃さのマークにし、色だけ薄くする */
+  .store { min-width: 152px; height: 44px; box-sizing: border-box; }
+  .store.soon { background: #a9a4ba; color: #fffaf0; cursor: default; }
   .app .links a:hover { background: var(--c); color: #1d1a2e; border-color: var(--c); }
 
   .values { background: var(--ink); color: var(--bg); overflow: hidden; }
   .values h2::after { background: var(--pink); }
   .values .head .sub, .value p { color: var(--bg); opacity: .8; }
-  .value-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+  .value-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .value h3 { font-size: 18px; font-weight: 900; margin: 0 0 10px; }
   .value p { font-size: 14px; margin: 0; }
-  .value .num { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; font-weight: 900; margin-bottom: 14px; color: #1d1a2e; }
+  .value .num { display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; font-weight: 900; margin-bottom: 8px; color: #1d1a2e; }
   .value:nth-child(1) .num { background: var(--pink); }
   .value:nth-child(2) .num { background: var(--yellow); }
   .value:nth-child(3) .num { background: var(--mint); }
 
-  footer { padding: 40px 0 48px; font-size: 13px; font-weight: 700; }
+  footer { padding: 24px 0 32px; font-size: 13px; font-weight: 700; }
   footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 
   @media (max-width: 640px) {
     .wrap { padding: 0 16px; }
     header nav a { margin-left: 16px; font-size: 13px; }
-    .hero { padding: 56px 0 88px; }
+    .hero { padding: 28px 0 44px; }
     .hero h1 { font-size: 24px; }
     .hero .splat:nth-of-type(1) { width: 190px !important; height: 190px !important; right: -90px !important; top: -70px !important; }
     .hero .splat:nth-of-type(2) { display: none; }
     .hero .splat:nth-of-type(3) { width: 120px !important; height: 120px !important; left: auto !important; right: -30px !important; bottom: -30px !important; }
     .values .splat:nth-of-type(1) { width: 160px !important; height: 160px !important; right: -70px !important; top: -50px !important; }
-    section { padding: 64px 0; }
+    section { padding: 40px 0; }
     section h2 { font-size: 24px; }
-    .apps { grid-template-columns: 1fr; gap: 32px; }
-    .value-grid { grid-template-columns: 1fr; gap: 28px; }
+    .apps { grid-template-columns: 1fr; gap: 26px; }
+    .value-grid { grid-template-columns: 1fr; gap: 20px; }
   }
+
+  /* プライバシーポリシーを右から出すパネル（同じサイトのページを iframe で表示） */
+  .drawer-bg { position: fixed; inset: 0; background: rgba(29,26,46,.45); opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 20; }
+  .drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(560px, 100vw); transition: transform .25s ease, width .2s; background: var(--paper); border-left: 3px solid var(--ink);
+    transform: translateX(100%); z-index: 21; display: flex; flex-direction: column; }
+  .drawer.wide { width: min(980px, 100vw); }
+  body.drawer-open { overflow: hidden; }
+  body.drawer-open .drawer-bg { opacity: 1; pointer-events: auto; }
+  body.drawer-open .drawer { transform: none; }
+  .drawer-head { display: flex; align-items: center; gap: 10px; padding: 14px 16px; border-bottom: 3px solid var(--ink); }
+  .drawer-head h2 { font-size: 16px; margin: 0; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .drawer-head h2::after { display: none; }
+  .drawer-head a, .drawer-head button { font: inherit; font-size: 13px; font-weight: 700; color: var(--ink); background: none; text-decoration: none;
+    border: 2px solid var(--ink); border-radius: 999px; padding: 4px 14px; cursor: pointer; white-space: nowrap; }
+  .drawer-head button { background: var(--ink); color: var(--paper); }
+  .drawer iframe { flex: 1; width: 100%; border: 0; background: #fff; }
+  @media (prefers-reduced-motion: reduce) { .drawer, .drawer-bg { transition: none; } }
 </style>
 </head>
 <body>
@@ -135,6 +167,7 @@
 <symbol id="splat1" viewBox="0 0 200 200"><path d="M147.6 92.2Q145.7 99.8 145.8 105.5Q145.8 111.2 153.7 128.2Q161.6 145.3 152.5 150.0Q143.5 154.7 134.1 158.4Q124.8 162.0 115.9 151.2Q107.0 140.5 100.1 140.4Q93.2 140.4 84.9 142.1Q76.6 143.9 61.7 148.3Q46.8 152.8 50.5 139.8Q54.3 126.7 55.4 119.6Q56.4 112.4 52.9 105.5Q49.4 98.6 49.9 90.0Q50.5 81.5 52.9 76.8Q55.3 72.1 54.5 55.4Q53.7 38.6 61.7 32.8Q69.7 26.9 82.8 36.9Q95.8 46.8 101.7 47.0Q107.6 47.2 118.1 42.5Q128.5 37.8 131.0 48.1Q133.6 58.4 139.1 64.9Q144.6 71.3 147.0 77.9Q149.5 84.5 147.6 92.2Z"/><circle cx="104.2" cy="192.0" r="4.8"/><circle cx="140.6" cy="177.3" r="6.4"/><circle cx="61.6" cy="25.3" r="4.9"/><circle cx="8.4" cy="95.1" r="5.4"/><circle cx="32.5" cy="153.6" r="2.7"/><circle cx="187.0" cy="124.4" r="7.9"/><circle cx="29.7" cy="53.4" r="3.4"/><circle cx="4.4" cy="98.7" r="6.7"/><circle cx="9.6" cy="77.0" r="3.8"/></symbol>
 <symbol id="splat2" viewBox="0 0 200 200"><path d="M147.4 93.5Q148.7 100.8 159.2 111.2Q169.8 121.5 170.6 132.8Q171.3 144.2 150.0 141.2Q128.7 138.3 123.7 139.2Q118.7 140.1 117.3 156.1Q115.9 172.0 105.3 158.7Q94.8 145.4 86.2 143.7Q77.5 142.0 67.2 145.4Q56.8 148.9 47.6 145.5Q38.4 142.1 45.0 126.1Q51.5 110.1 35.8 107.1Q20.0 104.1 35.1 93.7Q50.2 83.3 54.2 77.0Q58.3 70.6 61.1 65.5Q64.0 60.4 74.6 60.1Q85.1 59.8 90.0 55.0Q94.9 50.2 100.7 51.5Q106.5 52.8 114.2 52.4Q121.9 51.9 127.8 56.5Q133.8 61.0 150.9 57.5Q168.0 54.0 157.1 70.1Q146.1 86.1 147.4 93.5Z"/><circle cx="19.2" cy="106.8" r="4.3"/><circle cx="75.1" cy="24.0" r="7.5"/><circle cx="89.3" cy="193.7" r="4.2"/><circle cx="187.1" cy="76.1" r="5.3"/><circle cx="11.2" cy="90.1" r="5.7"/><circle cx="69.4" cy="174.8" r="5.3"/><circle cx="181.3" cy="64.3" r="2.9"/><circle cx="138.8" cy="18.0" r="7.5"/><circle cx="132.8" cy="185.0" r="2.8"/></symbol>
 <symbol id="splat3" viewBox="0 0 200 200"><path d="M150.4 94.2Q152.6 100.9 149.3 107.1Q146.1 113.3 155.6 125.4Q165.2 137.5 147.5 136.2Q129.8 135.0 127.2 149.0Q124.5 163.1 114.0 154.4Q103.4 145.7 100.1 148.2Q96.7 150.8 86.4 155.9Q76.0 161.1 70.3 149.2Q64.6 137.4 62.4 132.5Q60.2 127.7 57.7 118.8Q55.3 109.9 38.3 103.1Q21.3 96.4 35.2 90.4Q49.1 84.4 54.7 81.0Q60.3 77.7 63.4 72.2Q66.5 66.7 65.3 47.7Q64.1 28.8 80.1 41.4Q96.0 53.9 105.3 40.1Q114.6 26.4 121.6 30.6Q128.6 34.7 128.8 52.7Q129.0 70.7 134.5 71.5Q140.0 72.3 144.1 79.9Q148.3 87.5 150.4 94.2Z"/><circle cx="191.9" cy="79.2" r="5.6"/><circle cx="81.8" cy="21.2" r="7.1"/><circle cx="26.4" cy="63.3" r="2.8"/><circle cx="158.2" cy="23.9" r="3.0"/><circle cx="126.5" cy="19.6" r="3.3"/><circle cx="75.1" cy="188.1" r="7.3"/><circle cx="185.2" cy="124.3" r="2.7"/><circle cx="83.6" cy="18.5" r="7.3"/></symbol>
+<symbol id="laurel" viewBox="0 1 36 59"><path d="M24.3 51.3 A22 22 0 0 1 20.7 10.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><ellipse cx="16.9" cy="52.7" rx="2.3" ry="5" transform="rotate(82 16.9 52.7)"/><ellipse cx="21.1" cy="45.4" rx="2.3" ry="5" transform="rotate(158 21.1 45.4)"/><ellipse cx="9.6" cy="46.5" rx="2.3" ry="5" transform="rotate(103 9.6 46.5)"/><ellipse cx="16.2" cy="41.2" rx="2.3" ry="5" transform="rotate(179 16.2 41.2)"/><ellipse cx="5.1" cy="38.1" rx="2.3" ry="5" transform="rotate(124 5.1 38.1)"/><ellipse cx="13.1" cy="35.5" rx="2.3" ry="5" transform="rotate(200 13.1 35.5)"/><ellipse cx="3.8" cy="28.6" rx="2.3" ry="5" transform="rotate(145 3.8 28.6)"/><ellipse cx="12.2" cy="29.1" rx="2.3" ry="5" transform="rotate(221 12.2 29.1)"/><ellipse cx="6.1" cy="19.3" rx="2.3" ry="5" transform="rotate(166 6.1 19.3)"/><ellipse cx="13.7" cy="22.8" rx="2.3" ry="5" transform="rotate(242 13.7 22.8)"/><ellipse cx="11.5" cy="11.5" rx="2.3" ry="5" transform="rotate(187 11.5 11.5)"/><ellipse cx="17.4" cy="17.4" rx="2.3" ry="5" transform="rotate(263 17.4 17.4)"/></symbol>
 </svg>
 
 <header>
@@ -154,8 +187,8 @@
     <div class="splat" aria-hidden="true" style="left:-50px;bottom:-40px;width:200px;height:200px;color:var(--mint);opacity:.8"><svg><use href="#splat3"/></svg></div>
     <div class="wrap">
       <p class="eyebrow">fumy98 / iPhone Apps</p>
-      <h1>暮らしの小さな<span class="mark">「面倒」</span>を、<br>ひとつずつ片づける。</h1>
-      <p class="lead">個人で開発している iPhone アプリです。木材のカット計算、香典の記録、編み物のゲージ換算。身近な困りごとに、シンプルな道具で応えます。</p>
+      <h1>毎日にちょうどいい、<br><span class="mark">ちいさな道具</span>を。</h1>
+      <p class="lead">個人で開発している iPhone アプリです。<br>暮らしの中の<span style="white-space:nowrap">「あったらいいな」</span>を、ひとつずつ、<br>シンプルな道具にしてお届けします。</p>
     </div>
   </div>
 
@@ -169,55 +202,33 @@
         <li class="app">
           <svg class="dot" aria-hidden="true"><use href="#splat1"/></svg>
           <span class="no">01</span>
-          <h3>Someday</h3>
-          <span class="tag">いつかやりたいことリスト</span>
+          <div class="title"><img class="icon" src="img/someday-icon.png" alt="" width="64" height="64"><div><h3>Someday</h3>
+          <span class="tag">いつかやりたいことリスト</span></div></div>
+          <span class="badge" role="img" aria-label="1,000ダウンロード突破"><svg class="laurel" aria-hidden="true"><use href="#laurel"/></svg><span class="count"><b>1,000+</b><small>ダウンロード突破</small></span><svg class="laurel r" aria-hidden="true"><use href="#laurel"/></svg></span>
           <p class="desc">「いつかやりたい」を書きとめて、ひとつずつ叶えていくためのアプリ。</p>
+          <div class="stores">
+          <a class="store" href="https://apps.apple.com/app/id6804606288?pt=129352997&amp;ct=site&amp;mt=8" target="_blank" rel="noopener"><svg class="apple" viewBox="0 0 14 17" aria-hidden="true"><path d="M11.6 9c0-2 1.7-3 1.8-3.1-1-1.4-2.5-1.6-3-1.6-1.3-.1-2.5.8-3.1.8-.7 0-1.7-.8-2.7-.7C3.2 4.4 1.9 5.2 1.2 6.5c-1.5 2.6-.4 6.4 1 8.5.7 1 1.5 2.1 2.6 2.1 1 0 1.4-.7 2.7-.7 1.2 0 1.6.7 2.7.7 1.1 0 1.8-1 2.5-2 .8-1.2 1.1-2.3 1.1-2.4 0 0-2.2-.9-2.2-3.5zM9.6 3c.6-.7 1-1.7.9-2.7-.8 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6.9.1 1.9-.5 2.5-1.2z"/></svg><span><small>App Store で</small>ダウンロード</span></a>
+          <span class="store soon" aria-disabled="true"><svg class="apple" viewBox="0 0 16 18" aria-hidden="true"><path d="M1.2.4 9.6 9 1.2 17.6c-.4-.2-.7-.7-.7-1.2V1.6c0-.5.3-1 .7-1.2zm9.4 9.6 2.2 2.2-9.9 5.7 7.7-7.9zm0-2L2.9.3l9.9 5.7-2.2 2zM14 6.7l2.2 1.3c.7.4.7 1.6 0 2L14 11.3 11.5 9 14 6.7z"/></svg><span><small>Android 版</small>近日公開</span></span>
+          </div>
           <div class="links">
-            <a href="/100list-legal/">利用規約・プライバシー</a>
+            <a href="/someday/" data-drawer="Someday" data-wide>詳しく見る</a>
+            <a href="/someday/privacy.html" data-drawer="Someday のプライバシーポリシー">プライバシー</a>
           </div>
         </li>
         <li class="app">
           <svg class="dot" aria-hidden="true"><use href="#splat2"/></svg>
           <span class="no">02</span>
-          <h3>イタドリ</h3>
-          <span class="tag">木材カット計算</span>
-          <p class="desc">手持ちの定尺材と必要な部材の寸法を入れるだけ。刃厚まで含めた、無駄の少ない切断図を返します。</p>
-          <div class="links">
-            <a href="/itadori/">詳しく見る</a>
-            <a href="/itadori/privacy/">プライバシー</a>
+          <div class="title"><img class="icon" src="img/hoshobox-icon.png" alt="" width="64" height="64"><div><h3>HoshoBox</h3>
+          <span class="tag">家電の保証書を管理</span></div></div>
+          <p class="desc">レシートや保証書を撮るだけで、保証期限をまとめて管理。切れる前にお知らせします。データはあなたの iCloud に保存。</p>
+          <!-- 公開したら、Someday と同じ形の a.store（App Store の URL）に差し替える -->
+          <div class="stores">
+          <span class="store soon" aria-disabled="true"><svg class="apple" viewBox="0 0 14 17" aria-hidden="true"><path d="M11.6 9c0-2 1.7-3 1.8-3.1-1-1.4-2.5-1.6-3-1.6-1.3-.1-2.5.8-3.1.8-.7 0-1.7-.8-2.7-.7C3.2 4.4 1.9 5.2 1.2 6.5c-1.5 2.6-.4 6.4 1 8.5.7 1 1.5 2.1 2.6 2.1 1 0 1.4-.7 2.7-.7 1.2 0 1.6.7 2.7.7 1.1 0 1.8-1 2.5-2 .8-1.2 1.1-2.3 1.1-2.4 0 0-2.2-.9-2.2-3.5zM9.6 3c.6-.7 1-1.7.9-2.7-.8 0-1.9.6-2.5 1.3-.5.6-1 1.6-.9 2.6.9.1 1.9-.5 2.5-1.2z"/></svg><span><small>App Store で</small>近日公開</span></span>
+          <span class="store soon" aria-disabled="true"><svg class="apple" viewBox="0 0 16 18" aria-hidden="true"><path d="M1.2.4 9.6 9 1.2 17.6c-.4-.2-.7-.7-.7-1.2V1.6c0-.5.3-1 .7-1.2zm9.4 9.6 2.2 2.2-9.9 5.7 7.7-7.9zm0-2L2.9.3l9.9 5.7-2.2 2zM14 6.7l2.2 1.3c.7.4.7 1.6 0 2L14 11.3 11.5 9 14 6.7z"/></svg><span><small>Android 版</small>近日公開</span></span>
           </div>
-        </li>
-        <li class="app">
-          <svg class="dot" aria-hidden="true"><use href="#splat3"/></svg>
-          <span class="no">03</span>
-          <h3>慶弔帳</h3>
-          <span class="tag">香典・ご祝儀の記録</span>
-          <p class="desc">「この人に、過去いくら包んだか」が3秒で引ける台帳。授受と返礼を、iPhone の中だけで記録します。</p>
           <div class="links">
-            <a href="/keichocho/">詳しく見る</a>
-            <a href="/keichocho/privacy.html">プライバシー</a>
-          </div>
-        </li>
-        <li class="app">
-          <svg class="dot" aria-hidden="true"><use href="#splat1"/></svg>
-          <span class="no">04</span>
-          <h3>あみゲージ</h3>
-          <span class="tag">編み物のゲージ計算</span>
-          <p class="desc">本のゲージと自分のゲージが違っても大丈夫。目数・段数の換算から、増減目の均等割り出しまで一発。</p>
-          <div class="links">
-            <a href="/amigauge/">詳しく見る</a>
-            <a href="/amigauge/privacy.html">プライバシー</a>
-          </div>
-        </li>
-        <li class="app">
-          <svg class="dot" aria-hidden="true"><use href="#splat2"/></svg>
-          <span class="no">05</span>
-          <h3>HoshoBox</h3>
-          <span class="tag">家電の保証書を管理</span>
-          <p class="desc">レシートや保証書を撮るだけで、保証期限をまとめて管理。切れる前にお知らせし、家族とも共有できます。</p>
-          <div class="links">
-            <a href="/hoshobox/">詳しく見る</a>
-            <a href="/hoshobox/privacy.html">プライバシー</a>
+            <a href="/hoshobox/" data-drawer="HoshoBox" data-wide>詳しく見る</a>
+            <a href="/hoshobox/privacy.html" data-drawer="HoshoBox のプライバシーポリシー">プライバシー</a>
           </div>
         </li>
       </ul>
@@ -240,13 +251,13 @@
         </div>
         <div class="value">
           <span class="num">2</span>
-          <h3>データは手元に</h3>
-          <p>入力した内容は端末の中に保存。アカウント登録なしで使えます。</p>
+          <h3>データを大切に</h3>
+          <p>お預かりするデータは、そのアプリに必要な分だけ使います。どこに保存し、どう扱うかは、アプリごとのプライバシーポリシーに書いています。</p>
         </div>
         <div class="value">
           <span class="num">3</span>
           <h3>わかりやすい価格</h3>
-          <p>無料で始められ、気に入ったら買い切りで。続けやすい形を選んでいます。</p>
+          <p>まず無料で試せます。料金と、無料でできることの範囲は、アプリごとのページにはっきり書いています。</p>
         </div>
       </div>
     </div>
@@ -255,10 +266,50 @@
 
 <footer>
   <div class="wrap">
-    <span>© fumy98</span>
+    <span>© 2026 Fumiya Sakaino</span>
     <span>Independent iOS Developer</span>
   </div>
 </footer>
 
+<div class="drawer-bg" data-close></div>
+<aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
+  <div class="drawer-head">
+    <h2 id="drawer-title"></h2>
+    <a id="drawer-tab" href="#" target="_blank" rel="noopener">新しいタブで開く</a>
+    <button type="button" data-close>閉じる</button>
+  </div>
+  <iframe id="drawer-frame" title="プライバシーポリシー"></iframe>
+</aside>
+<script>
+(() => {
+  const body = document.body, drawer = document.querySelector('.drawer');
+  const frame = document.getElementById('drawer-frame'), title = document.getElementById('drawer-title'), tab = document.getElementById('drawer-tab');
+  let opener = null;
+  function open(a) {
+    opener = a;
+    title.textContent = a.dataset.drawer;
+    drawer.classList.toggle('wide', a.hasAttribute('data-wide'));
+    frame.title = a.dataset.drawer;
+    if (frame.getAttribute('src') !== a.getAttribute('href')) frame.src = a.getAttribute('href');
+    tab.href = a.href;
+    drawer.setAttribute('aria-hidden', 'false');
+    body.classList.add('drawer-open');
+    drawer.querySelector('button').focus();
+  }
+  function close() {
+    if (!body.classList.contains('drawer-open')) return;
+    body.classList.remove('drawer-open');
+    drawer.setAttribute('aria-hidden', 'true');
+    if (opener) opener.focus();
+  }
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[data-drawer]');
+    // ⌘クリックなど、新しいタブで開きたいときは邪魔しない
+    if (a && !(e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1)) { e.preventDefault(); open(a); return; }
+    if (e.target.closest('[data-close]')) close();
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+})();
+</script>
 </body>
 </html>

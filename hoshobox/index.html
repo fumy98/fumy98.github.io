@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HoshoBox − 保証書は、撮るだけ。 | 家電の保証期限を家族で管理</title>
-<meta name="description" content="レシートや保証書を撮るだけで、AI が商品名・型番・購入日・保証期間を読み取ります。保証が切れる前にお知らせ。家族と共有できる保証書の箱。">
+<title>HoshoBox − 保証書は、撮るだけ。 | 家電の保証期限をまとめて管理</title>
+<meta name="description" content="レシートや保証書を撮るだけで、AI が商品名・型番・購入日・保証期間を読み取ります。保証が切れる前にお知らせ。ホーム画面のウィジェットで期限がひと目でわかります。">
 <style>
   :root {
     --bg: #121316;
@@ -63,26 +63,6 @@
   .soon small { font-weight: 400; font-size: 11px; opacity: .7; }
   @media (max-width: 820px) { .hero .wrap { grid-template-columns: 1fr; } .hero h1 { font-size: 32px; } }
 
-  /* phone mock: stacked cards */
-  .phone { width: 290px; margin: 0 auto; background: #050506; border-radius: 44px; padding: 12px; box-shadow: 0 30px 70px rgba(0,0,0,.6), 0 0 0 1px #2a2c31; }
-  .screen { background: #000; border-radius: 34px; overflow: hidden; height: 560px; padding: 0 14px; position: relative; }
-  .notch { width: 110px; height: 26px; background: #050506; border-radius: 0 0 18px 18px; margin: 0 auto 18px; }
-  .screen h4 { font-family: var(--serif); font-size: 26px; font-weight: 600; color: #fff; margin-bottom: 4px; }
-  .screen .cnt { font-size: 11px; color: #8a8d94; margin-bottom: 18px; }
-  .stack { position: relative; }
-  .wcard { border-radius: 14px; padding: 14px 16px 52px; color: #fff; margin-top: -40px; box-shadow: 0 -6px 18px rgba(0,0,0,.45); position: relative; }
-  .wcard:first-child { margin-top: 0; }
-  .wcard .top { display: flex; justify-content: space-between; font-size: 10px; letter-spacing: .08em; opacity: .8; }
-  .wcard .nm { font-family: var(--serif); font-size: 17px; margin-top: 4px; }
-  .wcard.c1 { background: linear-gradient(150deg, #34557f, #1e3354); }
-  .wcard.c2 { background: linear-gradient(150deg, #2f6b52, #1b4434); }
-  .wcard.c3 { background: linear-gradient(150deg, #8a6424, #5b3f12); }
-  .wcard.c4 { background: linear-gradient(150deg, #4a4f5a, #2a2d34); }
-  .wcard.c5 { background: linear-gradient(150deg, #2b4a73, #172a45); padding-bottom: 18px; }
-  .wcard .meta { display: flex; justify-content: space-between; font-size: 11px; margin-top: 18px; opacity: .9; }
-  .wcard .left { font-weight: 700; }
-  .mock-note { text-align: center; font-size: 12px; color: var(--muted); margin-top: 14px; }
-
   /* features */
   .feat { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 32px; }
   @media (max-width: 820px) { .feat { grid-template-columns: 1fr 1fr; } }
@@ -133,6 +113,24 @@
   /* footer */
   footer { padding: 40px 0 60px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
   footer .links { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 10px; }
+
+  /* real screenshots */
+  .shot { width: 280px; margin: 0 auto; border-radius: 40px; padding: 10px; background: #050506; box-shadow: 0 30px 70px rgba(0,0,0,.6), 0 0 0 1px #2a2c31; }
+  .shot img { display: block; width: 100%; border-radius: 31px; }
+  /* 最初の画面の iPhone は「使い方」の2枚目と同じ大きさ・同じ形（切りそろえない） */
+  .hero .shot { width: 240px; border-radius: 34px; padding: 8px; }
+  .hero .shot img { height: auto; border-radius: 27px; }
+  .flow { display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 28px 4px 12px; margin-top: 8px; -webkit-overflow-scrolling: touch; }
+  .flow::-webkit-scrollbar { height: 6px; } .flow::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+  .step { flex: 0 0 240px; scroll-snap-align: start; }
+  .step .shot { width: 240px; border-radius: 34px; padding: 8px; }
+  .step .shot img { border-radius: 27px; }
+  .step .num { font-family: var(--serif); font-size: 13px; letter-spacing: .1em; color: var(--amber-light); display: block; margin: 16px 0 4px; }
+  .step h3 { font-size: 17px; margin-bottom: 6px; }
+  .step p { font-size: 13.5px; color: var(--muted); }
+  .hint { font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .side { margin-top: 28px; max-width: 780px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 22px; font-size: 14px; color: var(--muted); }
+  .side b { color: var(--ink); font-family: var(--serif); font-size: 15px; display: block; margin-bottom: 4px; }
 </style>
 </head>
 <body>
@@ -141,6 +139,7 @@
   <div class="wrap">
     <a class="brand" href="#top"><span class="mark">保</span>HoshoBox</a>
     <ul>
+      <li class="sec"><a href="#flow">使い方</a></li>
       <li class="sec"><a href="#features">機能</a></li>
       <li class="sec"><a href="#pricing">料金</a></li>
       <li class="sec"><a href="#faq">FAQ</a></li>
@@ -157,34 +156,36 @@
     <div>
       <span class="eyebrow">iPhone アプリ / 家電の保証書を管理</span>
       <h1>保証書は、<br><em>撮るだけ。</em></h1>
-      <p class="sub">レシートや保証書を撮ると、AI が商品名・型番・購入日・保証期間を読み取ります。保証が切れる前にお知らせ。家族とも同じ箱を共有できます。</p>
+      <p class="sub">レシートや保証書を撮ると、AI が商品名・型番・購入日・保証期間を読み取り、保証が切れる日をカードにしてまとめます。切れる前には「様子はどう？」とお知らせ。</p>
       <div class="badges">
         <span class="badge"><b>無料</b>で3件まで</span>
-        <span class="badge">家族と共有</span>
-        <span class="badge">リコールの確認</span>
+        <span class="badge">メーカー保証と延長保証を別々に</span>
+        <span class="badge">ウィジェット</span>
         <span class="badge">広告なし</span>
       </div>
       <div class="soon">App Store で近日公開<small>iPhone 専用</small></div>
     </div>
     <div>
-      <div class="phone" aria-hidden="true">
-        <div class="screen">
-          <div class="notch"></div>
-          <h4>保証書</h4>
-          <p class="cnt">5件 ・ うち1件が残り30日</p>
-          <div class="stack">
-            <div class="wcard c1"><div class="top"><span>PANASONIC</span><span>冷蔵庫</span></div><div class="nm">冷蔵庫 NR-F607</div></div>
-            <div class="wcard c2"><div class="top"><span>DAIKIN</span><span>エアコン</span></div><div class="nm">エアコン S40ZTRXP</div></div>
-            <div class="wcard c3"><div class="top"><span>SONY</span><span>テレビ</span></div><div class="nm">テレビ KJ-55X85L</div></div>
-            <div class="wcard c4"><div class="top"><span>HITACHI</span><span>洗濯機</span></div><div class="nm">洗濯機 BD-STX130J</div></div>
-            <div class="wcard c5"><div class="top"><span>SHARP</span><span>電子レンジ</span></div><div class="nm">電子レンジ RE-WF264</div><div class="meta"><span>購入 2025/11/30</span><span class="left">保証 残り30日</span></div></div>
-          </div>
-        </div>
-      </div>
-      <p class="mock-note">画面はイメージです</p>
+      <div class="shot"><img src="img/01_list_ja.jpg" alt="保証一覧。残りの短いカードほど手前に重なる" width="552" height="1200"></div>
     </div>
   </div>
 </header>
+
+<section id="flow">
+  <div class="wrap">
+    <span class="eyebrow">使い方</span>
+    <h2>撮って、しまって、<br>切れる前に思い出す。</h2>
+    <p class="lead">実際のアプリの画面です（見本のデータ）。</p>
+    <div class="flow">
+      <div class="step"><div class="shot"><img src="img/03_scan_ja.jpg" alt="撮った写真から読み取った結果" loading="lazy"></div><span class="num">01</span><h3>撮る</h3><p>レシートと型番シールを撮ると、商品名・型番・購入日・保証を読み取ります。自信のない項目だけ「確認」が付きます。</p></div>
+      <div class="step"><div class="shot"><img src="img/01_list_ja.jpg" alt="保証一覧" loading="lazy"></div><span class="num">02</span><h3>カードになる</h3><p>保証1件がカード1枚。残りが短いものほど手前に来るので、開けばすぐ分かります。</p></div>
+      <div class="step"><div class="shot"><img src="img/02_detail_ja.jpg" alt="引き出したカード" loading="lazy"></div><span class="num">03</span><h3>引き出す</h3><p>カードを押すと、保証の内訳・説明書の検索・修理の受付先が出ます。店頭では「受付用」の画面を見せるだけ。</p></div>
+      <div class="step"><div class="shot"><img src="img/04_inspect_ja.jpg" alt="1分点検" loading="lazy"></div><span class="num">04</span><h3>切れる前に点検</h3><p>1ヶ月前・2週間前・1週間前にお知らせ。家電ごとの項目を「OK」か「気になる」で答えるだけ。気になる箇所は自分で足せます。</p></div>
+      <div class="step"><div class="shot"><img src="img/05_widgets_ja.jpg" alt="ウィジェット" loading="lazy"></div><span class="num">05</span><h3>ホーム画面にも</h3><p>ウィジェットとロック画面に、いちばん早く切れる保証を出せます。アプリを開かなくても気づけます。</p></div>
+    </div>
+    <p class="hint">横にスクロールできます</p>
+  </div>
+</section>
 
 <section id="features" class="alt">
   <div class="wrap">
@@ -194,11 +195,12 @@
     <div class="feat">
       <div class="card navy"><span class="num">01</span><h3>撮るだけで登録</h3><p>レシート・保証書・型番シールを撮ると、AI が商品名・型番・購入日・保証期間を読み取って入力します。手で入力することもできます。</p></div>
       <div class="card amber"><span class="num">02</span><h3>切れる前にお知らせ</h3><p>保証が切れる前に、点検のお知らせを届けます。不具合に気づくなら、保証があるうちに。</p></div>
-      <div class="card green"><span class="num">03</span><h3>家族と共有</h3><p>招待リンクを送るだけで、家族と同じ箱を見たり、商品を追加したりできます。家族が追加したときはお知らせも届きます。</p></div>
+      <div class="card green"><span class="num">03</span><h3>メーカー保証と延長保証</h3><p>「メーカー1年＋販売店の長期保証5年」のような組み合わせも、それぞれの終了日を別々に数えます。</p></div>
       <div class="card navy"><span class="num">04</span><h3>修理の記録</h3><p>点検や修理をいつ、どこで、いくらで頼んだかを商品ごとに残せます。</p></div>
       <div class="card amber"><span class="num">05</span><h3>取扱説明書を検索</h3><p>型番から取扱説明書をすぐに探せます。紙の説明書を探し回る必要はありません。</p></div>
       <div class="card green"><span class="num">06</span><h3>リコールの確認</h3><p>登録した商品がリコール（回収・無償修理など）の対象になっていないか、定期的に確かめます。</p></div>
     </div>
+    <div class="side"><b>必要なら、家族とも</b>設定から招待リンクを送ると、家族と同じ保証を見られます。一人で使うなら、何もしなくてかまいません。</div>
   </div>
 </section>
 
@@ -214,23 +216,22 @@
           <li><span>登録できる商品</span><span>3件まで</span></li>
           <li><span>AI 読み取り</span><span>月3回</span></li>
           <li><span>保証期限のお知らせ</span><span>あり</span></li>
-          <li><span>家族と共有</span><span>あり</span></li>
+          <li><span>書き出し（PDF／CSV）</span><span>あり</span></li>
         </ul>
       </div>
       <div class="plan pro">
         <h3>プレミアム</h3>
         <div class="prices">
           <div><span>年額</span><span><b>¥4,800</b> <small>最初の2週間無料</small></span></div>
-          <div><span>買い切り</span><span><b>¥7,800</b></span></div>
           <div><span>月額</span><span><b>¥480</b> <small>最初の2週間無料</small></span></div>
         </div>
         <ul>
-          <li><span>登録できる商品</span><span>上限なし</span></li>
+          <li><span>登録できる商品</span><span>100件まで</span></li>
           <li><span>AI 読み取り</span><span>月100回</span></li>
         </ul>
       </div>
     </div>
-    <p class="price-note">月額・年額は、最初の2週間無料です。無料期間が終わる前に解約すれば料金はかかりません。価格は日本の App Store での税込価格です。</p>
+    <p class="price-note">年額・月額とも、最初の2週間無料です。無料期間が終わる前に解約すれば料金はかかりません。価格は日本の App Store での税込価格です。</p>
   </div>
 </section>
 
@@ -241,10 +242,10 @@
     <div class="faq">
       <details><summary>購入を復元するには？</summary><p>アプリの「設定」で「購入を復元」をタップしてください。同じ Apple ID で購入したプレミアムが復元されます。</p></details>
       <details><summary>月額・年額を解約するには？</summary><p>iPhone の「設定」アプリ →（一番上の）Apple ID → 「サブスクリプション」→ HoshoBox を選んで解約してください。アプリを削除しただけでは解約されません。</p></details>
-      <details><summary>機種変更したらデータはどうなりますか？</summary><p>アプリで「Apple でサインイン」を結び付けておくと、新しい iPhone でも同じ Apple ID でサインインすればデータを引き継げます。再インストールしたときも同じです。</p></details>
-      <details><summary>家族を招待するには？</summary><p>アプリの「家族と共有」から招待リンクを送ってください。招待リンクは7日で使えなくなります。期限が切れたら、もう一度送り直してください。共有はいつでもやめられ、参加した家族を外すこともできます。</p></details>
+      <details><summary>機種変更したらデータはどうなりますか？</summary><p>商品と写真は、iPhone とあなたの iCloud に保存されます。新しい iPhone で同じ Apple ID の iCloud にサインインしてアプリを入れると、自動で戻ります。アプリを入れ直したときも同じです。iCloud にサインインしていないと、その iPhone の中だけに保存されます。</p></details>
+      <details><summary>家族を招待するには？</summary><p>アプリの「設定」→「家族と共有」から招待リンクを送ってください。招待される人も、iPhone で iCloud にサインインしている必要があります。LINE の中で開いて進まないときは、リンクを長押しして「Safari で開く」を選んでください。共有はいつでもやめられ、参加した家族を外すこともできます。</p></details>
       <details><summary>AI 読み取りで写真は送られますか？</summary><p>写真の文字は iPhone の中で読み取り、読み取った文字だけを送って項目に振り分けます。写真そのものは読み取りのためには送信しません。詳しくはプライバシーポリシーをご覧ください。</p></details>
-      <details><summary>データを削除するには？</summary><p>アプリの「設定」→「データとアカウントを削除」で、保存サーバーにあるあなたのアカウントとデータがすべて削除されます。商品や写真を1件ずつ削除することもできます。</p></details>
+      <details><summary>データを削除するには？</summary><p>アプリの「設定」→「すべてのデータを削除」で、iPhone とあなたの iCloud から、あなたの商品・写真・記録がすべて削除されます。商品や写真を1件ずつ削除することもできます。</p></details>
     </div>
   </div>
 </section>
@@ -272,18 +273,36 @@
     <div>
       <span class="eyebrow">iPhone app / Warranty keeper</span>
       <h1>Warranties,<br><em>just snap them.</em></h1>
-      <p class="sub">Take a photo of a receipt or warranty card, and AI reads the product name, model number, purchase date and warranty period. Get a reminder before the warranty runs out, and share the same wallet with your family.</p>
+      <p class="sub">Take a photo of a receipt or warranty card, and AI reads the product name, model number, purchase date and warranty period. Each warranty becomes a card, and you get a reminder to check things over before it ends.</p>
       <div class="badges">
         <span class="badge"><b>Free</b> for up to 3 items</span>
-        <span class="badge">Family sharing</span>
-        <span class="badge">Recall checks</span>
+        <span class="badge">Manufacturer + extended warranties</span>
+        <span class="badge">Widgets</span>
         <span class="badge">No ads</span>
       </div>
       <div class="soon">Coming soon to the App Store<small>For iPhone</small></div>
     </div>
-    <div></div>
+    <div>
+      <div class="shot"><img src="img/01_list_en.jpg" alt="Warranty list, cards ending soonest in front" loading="lazy"></div>
+    </div>
   </div>
 </header>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">How it works</span>
+    <h2>Snap it, keep it,<br>remember before it ends.</h2>
+    <p class="lead">Real screens from the app (sample data).</p>
+    <div class="flow">
+      <div class="step"><div class="shot"><img src="img/03_scan_en.jpg" alt="Scan result" loading="lazy"></div><span class="num">01</span><h3>Snap</h3><p>Photograph the receipt and model label. Only fields the app is unsure about are flagged for you to check.</p></div>
+      <div class="step"><div class="shot"><img src="img/01_list_en.jpg" alt="Warranty list" loading="lazy"></div><span class="num">02</span><h3>It becomes a card</h3><p>One warranty, one card. The ones ending soonest sit in front.</p></div>
+      <div class="step"><div class="shot"><img src="img/02_detail_en.jpg" alt="Card details" loading="lazy"></div><span class="num">03</span><h3>Pull one out</h3><p>See the warranty breakdown, find the manual or a repair service, or show the "Show at Store" screen at the counter.</p></div>
+      <div class="step"><div class="shot"><img src="img/04_inspect_en.jpg" alt="One-minute check-up" loading="lazy"></div><span class="num">04</span><h3>Check before it ends</h3><p>Reminders one month, two weeks and one week ahead. Answer "OK" or "Not sure" for each point, and add your own.</p></div>
+      <div class="step"><div class="shot"><img src="img/05_widgets_en.jpg" alt="Widgets" loading="lazy"></div><span class="num">05</span><h3>On your Home Screen</h3><p>Widgets and Lock Screen show the warranty ending soonest, so you notice without opening the app.</p></div>
+    </div>
+    <p class="hint">Scroll sideways</p>
+  </div>
+</section>
 
 <section class="alt">
   <div class="wrap">
@@ -292,11 +311,12 @@
     <div class="feat">
       <div class="card navy"><span class="num">01</span><h3>Snap to add</h3><p>Photograph a receipt, warranty card or model label, and AI fills in the product name, model number, purchase date and warranty period. You can also enter items manually.</p></div>
       <div class="card amber"><span class="num">02</span><h3>Reminders before expiry</h3><p>Get a check-up reminder before a warranty ends, so you can catch problems while you are still covered.</p></div>
-      <div class="card green"><span class="num">03</span><h3>Share with family</h3><p>Send an invite link and your family can view and add items in the same wallet. You are notified when they add something.</p></div>
+      <div class="card green"><span class="num">03</span><h3>Manufacturer and extended</h3><p>"1-year manufacturer plus 5-year store warranty"? Each end date is tracked on its own.</p></div>
       <div class="card navy"><span class="num">04</span><h3>Repair records</h3><p>Keep track of when, where and for how much each item was checked or repaired.</p></div>
       <div class="card amber"><span class="num">05</span><h3>Find manuals</h3><p>Look up the instruction manual from the model number in a moment.</p></div>
       <div class="card green"><span class="num">06</span><h3>Recall checks</h3><p>The app regularly checks whether your items are subject to a recall (return, free repair, etc.). Recall information is from Japan.</p></div>
     </div>
+    <div class="side"><b>Family, if you want it</b>Send an invite link from Settings and your family can see the same warranties. Using it alone? Nothing to set up.</div>
   </div>
 </section>
 
@@ -312,23 +332,22 @@
           <li><span>Items</span><span>Up to 3</span></li>
           <li><span>AI scans</span><span>3 per month</span></li>
           <li><span>Expiry reminders</span><span>Included</span></li>
-          <li><span>Family sharing</span><span>Included</span></li>
+          <li><span>Export (PDF / CSV)</span><span>Included</span></li>
         </ul>
       </div>
       <div class="plan pro">
         <h3>Premium</h3>
         <div class="prices">
           <div><span>Yearly</span><span><b>¥4,800</b> <small>2 weeks free</small></span></div>
-          <div><span>One-time</span><span><b>¥7,800</b></span></div>
           <div><span>Monthly</span><span><b>¥480</b> <small>2 weeks free</small></span></div>
         </div>
         <ul>
-          <li><span>Items</span><span>Unlimited</span></li>
+          <li><span>Items</span><span>Up to 100</span></li>
           <li><span>AI scans</span><span>100 per month</span></li>
         </ul>
       </div>
     </div>
-    <p class="price-note">Monthly and yearly plans start with a 2-week free trial. Cancel before the trial ends and you will not be charged. Prices shown are for the Japanese App Store; prices in other regions may differ.</p>
+    <p class="price-note">Yearly and monthly plans both start with a 2-week free trial. Cancel before the trial ends and you will not be charged. Prices shown are for the Japanese App Store; prices in other regions may differ.</p>
   </div>
 </section>
 
@@ -339,10 +358,10 @@
     <div class="faq">
       <details><summary>How do I restore my purchase?</summary><p>Open "Settings" in the app and tap "Restore Purchases". Premium bought with the same Apple ID will be restored.</p></details>
       <details><summary>How do I cancel a monthly or yearly plan?</summary><p>Open the iPhone Settings app, tap your Apple ID at the top, then "Subscriptions", choose HoshoBox and cancel. Deleting the app does not cancel the subscription.</p></details>
-      <details><summary>What happens when I switch phones?</summary><p>If you link "Sign in with Apple" in the app, sign in with the same Apple ID on your new iPhone to restore your data. The same applies after reinstalling.</p></details>
-      <details><summary>How do I invite my family?</summary><p>Send an invite link from "Family Sharing" in the app. Invite links expire after 7 days; send a new one if it has expired. You can stop sharing or remove a member at any time.</p></details>
+      <details><summary>What happens when I switch phones?</summary><p>Your items and photos are stored on your iPhone and in your own iCloud. Sign in to the same Apple ID on your new iPhone and install the app, and they come back automatically. The same applies after reinstalling. If you are not signed in to iCloud, data stays on that iPhone only.</p></details>
+      <details><summary>How do I invite my family?</summary><p>Send an invite link from "Settings" → "Family Sharing" in the app. The person you invite must also be signed in to iCloud on their iPhone. If the link does not open inside LINE, long-press it and choose "Open in Safari". You can stop sharing or remove a member at any time.</p></details>
       <details><summary>Are my photos sent for AI scanning?</summary><p>Text in photos is read on your iPhone, and only that text is sent to be sorted into fields. The photos themselves are not sent for reading. See the Privacy Policy for details.</p></details>
-      <details><summary>How do I delete my data?</summary><p>"Settings" → "Delete Data and Account" in the app deletes your account and all your data from the storage server. You can also delete items and photos one by one.</p></details>
+      <details><summary>How do I delete my data?</summary><p>"Settings" → "Delete All Data" in the app deletes your items, photos and records from your iPhone and your iCloud. You can also delete items and photos one by one.</p></details>
     </div>
   </div>
 </section>
