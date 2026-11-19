@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>潮風 SHIOKAZE − 帆船海戦 | fumy98</title>
+<meta name="description" content="風を読み、帆を張り、舷側を向けて撃て。波と風が動く 3D の海で戦う帆船海戦ゲーム。海賊番付の船長 11 人と一騎打ち、金貨で船を育てる。iPhone・横向き専用。通信なし・広告なし。">
+<style>
+  :root {
+    --night: #0d1622; --sea: #12283a; --sea2: #1b3a52; --ink: #2a2116; --ink-soft: #5a4a35;
+    --parch: #efe3c6; --parch2: #e4d3ad; --parch-line: #c9b386; --brass: #c9a24a; --brass-dark: #8c6a24; --brass-light: #e8cf86;
+    --wood: #4a2f1c; --wood2: #6b4426; --ivory: #f7f1e1; --muted: #9fb0bf;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--night); color: var(--ivory); font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif; line-height: 1.8; -webkit-font-smoothing: antialiased; }
+  a { color: var(--brass-light); }
+  .serif { font-family: "Hiragino Mincho ProN", "Yu Mincho", "Times New Roman", serif; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+  /* nav */
+  nav { position: sticky; top: 0; z-index: 10; background: linear-gradient(var(--wood), #3b2515); border-bottom: 2px solid var(--brass-dark); box-shadow: 0 2px 10px rgba(0,0,0,.4); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 56px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--ivory); text-decoration: none; font-weight: 700; letter-spacing: .08em; }
+  .brand .mark { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, var(--brass-light), var(--brass) 55%, var(--brass-dark)); color: var(--wood); font-family: "Hiragino Mincho ProN", serif; font-size: 16px; box-shadow: inset 0 0 0 2px rgba(74,47,28,.4); }
+  nav ul { list-style: none; display: flex; gap: 18px; margin: 0; padding: 0; font-size: 14px; }
+  nav ul a { color: var(--parch); text-decoration: none; }
+  nav ul a:hover { color: var(--brass-light); }
+  nav .lang a { padding: 2px 10px; border: 1px solid var(--brass-dark); border-radius: 999px; margin-left: 4px; }
+  @media (max-width: 760px) { nav .sec { display: none; } }
+
+  /* hero */
+  .hero { position: relative; overflow: hidden; padding: 72px 0 0; background: radial-gradient(ellipse at 75% 18%, rgba(232,207,134,.35), transparent 40%), linear-gradient(#1a2b3e 0%, #2f4458 38%, #c98b54 60%, #3a4f62 62%, var(--sea) 100%); }
+  .hero .wrap { position: relative; z-index: 2; display: grid; grid-template-columns: 1.05fr 1fr; gap: 36px; align-items: center; padding-bottom: 72px; }
+  @media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } }
+  .eyebrow { display: inline-block; font-size: 12px; letter-spacing: .2em; color: var(--brass-light); text-transform: uppercase; }
+  .hero h1 { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-weight: 600; font-size: clamp(44px, 8vw, 76px); line-height: 1.1; margin: 8px 0 4px; text-shadow: 0 2px 12px rgba(0,0,0,.45); }
+  .hero .latin { font-family: "Times New Roman", serif; letter-spacing: .45em; color: var(--brass-light); font-size: 15px; }
+  .hero .lead { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-size: 19px; margin: 22px 0 12px; text-shadow: 0 1px 8px rgba(0,0,0,.5); }
+  .hero .sub { color: #e6e9ee; font-size: 15px; max-width: 520px; text-shadow: 0 1px 6px rgba(0,0,0,.5); }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 24px; }
+  .badge { font-size: 13px; padding: 3px 12px; border-radius: 999px; background: rgba(13,22,34,.55); border: 1px solid rgba(232,207,134,.45); color: var(--parch); }
+  .store { display: inline-flex; flex-direction: column; align-items: flex-start; padding: 10px 22px; border-radius: 10px; background: linear-gradient(var(--brass-light), var(--brass) 50%, var(--brass-dark)); color: var(--wood); text-decoration: none; font-weight: 700; box-shadow: 0 3px 0 #5c4418, 0 6px 16px rgba(0,0,0,.35); }
+  .store small { font-weight: 500; font-size: 12px; }
+  .store.soon { cursor: default; opacity: .92; }
+  /* 波（CSS だけ） */
+  .waves { position: absolute; left: 0; right: 0; bottom: 0; height: 120px; z-index: 1; }
+  .waves i { position: absolute; left: -10%; right: -10%; height: 70px; border-radius: 50% 50% 0 0 / 100% 100% 0 0; }
+  .waves i:nth-child(1) { bottom: 40px; background: rgba(27,58,82,.7); transform: scaleX(1.2); }
+  .waves i:nth-child(2) { bottom: 18px; left: 10%; background: rgba(18,40,58,.9); }
+  .waves i:nth-child(3) { bottom: -20px; background: var(--night); }
+
+  /* 画像の枠（後で差し込む） */
+  .frame { position: relative; border-radius: 6px; padding: 10px; background: linear-gradient(135deg, var(--brass-light), var(--brass) 40%, var(--brass-dark)); box-shadow: 0 10px 30px rgba(0,0,0,.45); }
+  .frame .inner { aspect-ratio: 2868 / 1320; border-radius: 3px; overflow: hidden; display: grid; place-items: center; background: radial-gradient(ellipse at 70% 25%, rgba(232,207,134,.5), transparent 45%), linear-gradient(#2b3f55, #b97f4d 55%, #2a4258 58%, #10263a); color: rgba(247,241,225,.85); font-size: 13px; text-align: center; }
+  .frame .inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .frame .ship { width: 46%; max-width: 220px; opacity: .9; }
+
+  /* parchment sections */
+  section { padding: 72px 0; }
+  section.parch { background: radial-gradient(ellipse at 20% 0%, rgba(255,255,255,.35), transparent 50%), linear-gradient(var(--parch), var(--parch2)); color: var(--ink); }
+  section.parch a { color: var(--brass-dark); }
+  section.sea { background: linear-gradient(var(--night), var(--sea)); }
+  h2 { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-weight: 600; font-size: clamp(26px, 4vw, 36px); line-height: 1.35; margin: 6px 0 28px; }
+  .parch .eyebrow { color: var(--brass-dark); }
+  .rule { height: 2px; width: 72px; margin: -14px 0 30px; background: linear-gradient(90deg, var(--brass), transparent); }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  @media (max-width: 860px) { .grid3, .grid2 { grid-template-columns: 1fr; } }
+  .card { background: rgba(255,255,255,.35); border: 1px solid var(--parch-line); border-radius: 8px; padding: 20px 22px; box-shadow: inset 0 0 0 4px rgba(255,255,255,.18); }
+  .card h3 { font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; font-size: 19px; margin: 0 0 8px; }
+  .card p { margin: 0; font-size: 15px; color: var(--ink-soft); }
+  .card .num { font-family: "Times New Roman", serif; color: var(--brass-dark); font-size: 13px; letter-spacing: .2em; }
+  .sea .card { background: rgba(247,241,225,.06); border-color: rgba(201,162,74,.35); box-shadow: none; }
+  .sea .card p { color: #c9d3dc; }
+  .sea .card .num { color: var(--brass-light); }
+  .shots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 36px; }
+  @media (max-width: 760px) { .shots { grid-template-columns: 1fr; } }
+  .shots figure { margin: 0; }
+  .shots figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; text-align: center; }
+
+  /* pricing */
+  .plans { display: grid; grid-template-columns: 1fr 1.2fr; gap: 20px; }
+  @media (max-width: 760px) { .plans { grid-template-columns: 1fr; } }
+  .plan { border-radius: 10px; padding: 24px; border: 1px solid var(--parch-line); background: rgba(255,255,255,.3); }
+  .plan.member { background: linear-gradient(#3b2515, var(--wood)); color: var(--ivory); border: 2px solid var(--brass); box-shadow: 0 8px 24px rgba(74,47,28,.35); }
+  .plan h3 { font-family: "Hiragino Mincho ProN", serif; font-size: 22px; margin: 0 0 6px; }
+  .plan .amount { font-family: "Times New Roman", serif; font-size: 34px; margin-bottom: 10px; }
+  .plan .prices div { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-bottom: 1px solid rgba(201,162,74,.35); }
+  .plan .prices b { font-size: 22px; color: var(--brass-light); }
+  .plan .prices small { color: var(--parch2); margin-left: 6px; }
+  .plan ul { margin: 14px 0 0; padding-left: 1.1em; font-size: 15px; }
+  .plan li { margin: 4px 0; }
+  .price-note { font-size: 13px; color: var(--ink-soft); margin-top: 16px; }
+
+  /* faq */
+  .faq details { border-bottom: 1px solid rgba(201,162,74,.3); padding: 14px 0; }
+  .faq summary { cursor: pointer; font-weight: 600; }
+  .faq p { color: #c9d3dc; margin: 10px 0 0; font-size: 15px; }
+  .contact p { margin: 6px 0; }
+  .muted { color: var(--muted); font-size: 14px; }
+  hr.divider { border: 0; height: 6px; margin: 0; background: repeating-linear-gradient(90deg, var(--brass-dark) 0 18px, var(--brass) 18px 36px); }
+  footer { padding: 36px 0 56px; background: #0a111a; border-top: 1px solid #1d2a38; font-size: 13px; color: var(--muted); }
+  footer .links { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ship" viewBox="0 0 200 160">
+    <path d="M100 8v118M60 30v96M140 34v92" stroke="#2a2116" stroke-width="3"/>
+    <path d="M102 14c34 10 40 40 34 64-12-4-24-4-34 0z M62 36c22 8 28 30 24 50-8-3-16-3-24 0z M142 40c20 8 24 26 20 44-7-3-14-3-20 0z" fill="#f2e6c8" stroke="#8c6a24" stroke-width="1.5"/>
+    <path d="M98 20c-30 10-36 38-30 60 10-4 20-4 30 0z M58 40c-18 8-22 28-18 44 6-2 12-2 18 0z M138 44c-18 8-20 26-16 40 5-2 11-2 16 0z" fill="#e4d3ad" stroke="#8c6a24" stroke-width="1.5"/>
+    <path d="M20 118h168l-18 26H44z" fill="#4a2f1c" stroke="#2a2116" stroke-width="2"/>
+    <path d="M30 126h146" stroke="#c9a24a" stroke-width="2"/>
+    <circle cx="62" cy="133" r="3" fill="#1a120a"/><circle cx="84" cy="133" r="3" fill="#1a120a"/><circle cx="106" cy="133" r="3" fill="#1a120a"/><circle cx="128" cy="133" r="3" fill="#1a120a"/><circle cx="150" cy="133" r="3" fill="#1a120a"/>
+    <path d="M100 8l16 5-16 5z" fill="#c9a24a"/>
+  </symbol>
+</svg>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="mark">潮</span>SHIOKAZE</a>
+    <ul>
+      <li class="sec"><a href="#play">遊び方</a></li>
+      <li class="sec"><a href="#features">遊びの要素</a></li>
+      <li class="sec"><a href="#member">船団の会</a></li>
+      <li class="sec"><a href="#faq">FAQ</a></li>
+      <li class="lang"><a href="#top" lang="ja">日本語</a><a href="#en" lang="en">English</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===================== 日本語 ===================== -->
+<div lang="ja">
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">iPhone ゲーム / 3D 帆船海戦</span>
+      <h1>潮風</h1>
+      <div class="latin">SHIOKAZE</div>
+      <p class="lead">風を読み、帆を張り、舷側を向けて撃て。</p>
+      <p class="sub">波と風が動く 3D の海で、押し寄せる海賊船と砲火を交える帆船海戦ゲーム。稼いだ金貨で船を鍛え、小さなスループから戦列艦へ。</p>
+      <div class="badges">
+        <span class="badge">基本無料</span>
+        <span class="badge">通信なし・オフライン</span>
+        <span class="badge">広告なし</span>
+        <span class="badge">横向き専用</span>
+      </div>
+      <!-- 公開したら a.store（https://apps.apple.com/jp/app/id…?pt=129352997&ct=lp&mt=8）に差し替える -->
+      <span class="store soon" aria-disabled="true">App Store で近日公開<small>iPhone 専用</small></span>
+    </div>
+    <div>
+      <!-- 差し込み: img/01_broadside_ja.jpg（2868×1320 の横長） -->
+      <div class="frame"><div class="inner"><svg class="ship" aria-label="帆船の絵"><use href="#ship"/></svg></div></div>
+    </div>
+  </div>
+  <div class="waves" aria-hidden="true"><i></i><i></i><i></i></div>
+</header>
+
+<section id="play" class="parch">
+  <div class="wrap">
+    <span class="eyebrow">遊び方</span>
+    <h2>舵と帆と大砲。<br>操るのは、この三つ。</h2>
+    <div class="rule"></div>
+    <div class="grid3">
+      <div class="card"><div class="num">I</div><h3>風を読んで走る</h3><p>帆の張り具合と舵で、風上にも風下にも。横風がいちばん速く、向かい風では遅くなります。石炭がある間は蒸気機関で押し切れます。</p></div>
+      <div class="card"><div class="num">II</div><h3>舷側を向けて撃つ</h3><p>左右どちらの舷から撃つかを選び、押して構え、離して一斉射撃。仰角と先回りは自動で合わせるので、操船に集中できます。</p></div>
+      <div class="card"><div class="num">III</div><h3>金貨で船を育てる</h3><p>装甲・帆・大砲・舵・機関の強化に、旋回砲や臼砲、大型ボイラーなど 9 種の艤装。スループからブリッグ、フリゲート、戦列艦へ。</p></div>
+    </div>
+    <div class="shots">
+      <!-- 差し込み: img/02_sink_ja.jpg / img/03_league_ja.jpg -->
+      <figure><div class="frame"><div class="inner">撃沈の場面</div></div><figcaption>波ごとに大きくなる海賊船を沈める</figcaption></figure>
+      <figure><div class="frame"><div class="inner">造船所の艤装</div></div><figcaption>大砲も機関も、取り付けて育てる</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="sea">
+  <div class="wrap">
+    <span class="eyebrow">遊びの要素</span>
+    <h2>挑む相手と、毎日の目標。</h2>
+    <div class="rule"></div>
+    <div class="grid3">
+      <div class="card"><div class="num">海賊番付</div><h3>船長 11 人と一騎打ち</h3><p>名のある船長に番付の順で挑み、懸賞金と階級を手に入れます。全員倒すと次の巡目へ。負けても失うものはありません。</p></div>
+      <div class="card"><div class="num">今日の任務</div><h3>毎日 3 つの任務</h3><p>沈める・勝つ・波を越える。達成すると金貨と経験がもらえます。</p></div>
+      <div class="card"><div class="num">段位と二つ名</div><h3>新米から海神へ</h3><p>戦うほど段位が上がり、二つ名が変わります。昇段のたびに祝い金。</p></div>
+      <div class="card"><div class="num">勲章</div><h3>18 個の勲章</h3><p>通算の記録で届く勲章。受け取ると金貨、いくつかは特別な装いも。</p></div>
+      <div class="card"><div class="num">週間番付</div><h3>CPU の船長 30 人と競う</h3><p>1 週間の名声で順位を競い、週が変わると順位に応じた褒賞。</p></div>
+      <div class="card"><div class="num">毎日の贈り物</div><h3>港に入ると金貨</h3><p>1 日 1 回の贈り物。続けて受け取るほど上乗せされます。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="member" class="parch">
+  <div class="wrap">
+    <span class="eyebrow">料金</span>
+    <h2>すべて無料で遊べます。<br>もっと楽しむなら「潮風 船団の会」。</h2>
+    <div class="rule"></div>
+    <div class="plans">
+      <div class="plan">
+        <h3>無料</h3>
+        <div class="amount">¥0</div>
+        <ul>
+          <li>すべての航海・一騎打ち・任務・番付</li>
+          <li>船 4 種と 9 種の艤装</li>
+          <li>毎日の贈り物 金貨 30</li>
+          <li>広告なし</li>
+        </ul>
+      </div>
+      <div class="plan member">
+        <h3>潮風 船団の会</h3>
+        <div class="prices">
+          <div><span>月額</span><span><b>¥1,000</b><small>初回 1 週間無料</small></span></div>
+          <div><span>年額</span><span><b>¥8,000</b><small>初回 1 週間無料</small></span></div>
+        </div>
+        <ul>
+          <li>航海と一騎打ちの懸賞金が 2 倍</li>
+          <li>装備・艤装が 2 割引</li>
+          <li>1 回の航海で 1 度だけ持ち直す</li>
+          <li>毎日の贈り物が金貨 150</li>
+          <li>会員専用の船 3 隻（私掠フリゲート・快速帆船「疾風」・装甲蒸気艦「鉄鯨」）</li>
+          <li>会員専用の装い 8 種（帆・船体の塗り・旗）</li>
+          <li>撮影モード（計器を消して好きな向きから撮り、写真に保存）</li>
+        </ul>
+      </div>
+    </div>
+    <p class="price-note">自動更新のサブスクリプションです。初めての方は 1 週間無料で、無料期間が終わる前に解約すれば料金はかかりません。期間終了の 24 時間前までに解約しない限り自動で更新されます。価格は日本の App Store での税込価格です。</p>
+  </div>
+</section>
+
+<section id="faq" class="sea">
+  <div class="wrap">
+    <span class="eyebrow">よくある質問</span>
+    <h2>FAQ</h2>
+    <div class="faq">
+      <details><summary>購入を復元するには？</summary><p>アプリの「造船所」→「会員」で「購入を復元」をタップしてください。同じ Apple ID で加入した「潮風 船団の会」が復元されます。</p></details>
+      <details><summary>解約するには？</summary><p>iPhone の「設定」アプリ →（一番上の）自分の名前 →「サブスクリプション」→ 潮風 を選んで解約してください。アプリを削除しただけでは解約されません。解約しても、期間の終わりまでは特典が使えます。</p></details>
+      <details><summary>会員でなくても最後まで遊べますか？</summary><p>はい。航海・一騎打ち・任務・番付はすべて無料で遊べます。会員は稼ぎや見た目が増える特典です。</p></details>
+      <details><summary>通信やデータの送信はありますか？</summary><p>App Store の購入処理を除き、一切の通信を行いません。オフラインで遊べます。進み具合は iPhone の中だけに保存され、開発者を含むだれにも送られません。</p></details>
+      <details><summary>進み具合を消すには？機種変更したら？</summary><p>アプリを削除すると、進み具合もすべて消えます。iPhone 全体のバックアップから新しい iPhone に移すと、進み具合も一緒に移ります。会員の加入は Apple ID に付くので、新しい iPhone では「購入を復元」で戻せます。</p></details>
+      <details><summary>英語で遊べますか？</summary><p>今はゲームの中の文字は日本語だけです。英語への対応は今後の更新で予定しています。</p></details>
+      <details><summary>縦向きで遊べますか？</summary><p>横向き専用です。左手で舵と左舷の砲、右手で帆・右舷の砲・機関を操ります。</p></details>
+    </div>
+    <div class="contact" style="margin-top:36px">
+      <h3 class="serif" style="font-size:20px;margin:0 0 8px">お問い合わせ</h3>
+      <p>メール: <a href="mailto:fumi.programming@gmail.com">fumi.programming@gmail.com</a></p>
+      <p class="muted">返信まで数日いただく場合があります。</p>
+      <p style="margin-top:14px;font-size:14px"><a href="privacy.html">プライバシーポリシー</a></p>
+    </div>
+  </div>
+</section>
+</div>
+
+<hr class="divider">
+
+<!-- ===================== English ===================== -->
+<div lang="en" id="en">
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">iPhone game / 3D tall-ship battles</span>
+      <h1 style="font-family:'Times New Roman',serif;letter-spacing:.06em">SHIOKAZE</h1>
+      <div class="latin">SEA BREEZE</div>
+      <p class="lead">Read the wind. Set your sails. Turn your broadside and fire.</p>
+      <p class="sub">A tall-ship battle game on a living 3D ocean of rolling waves and shifting wind. Earn gold, upgrade your ship, and rise from a small sloop to a ship of the line.</p>
+      <div class="badges">
+        <span class="badge">Free to play</span>
+        <span class="badge">Offline, no network</span>
+        <span class="badge">No ads</span>
+        <span class="badge">Landscape only</span>
+        <span class="badge">In-game text: Japanese only (for now)</span>
+      </div>
+      <!-- Replace with a.store (https://apps.apple.com/us/app/id…?pt=129352997&ct=lp&mt=8) after release -->
+      <span class="store soon" aria-disabled="true">Coming soon to the App Store<small>For iPhone</small></span>
+    </div>
+    <div>
+      <!-- Slot: img/01_broadside_en.jpg (2868x1320) -->
+      <div class="frame"><div class="inner"><svg class="ship" aria-label="A tall ship"><use href="#ship"/></svg></div></div>
+    </div>
+  </div>
+  <div class="waves" aria-hidden="true"><i></i><i></i><i></i></div>
+</header>
+
+<section class="parch">
+  <div class="wrap">
+    <span class="eyebrow">How to play</span>
+    <h2>Wheel, sails and cannons.<br>That is all you need.</h2>
+    <div class="rule"></div>
+    <div class="grid3">
+      <div class="card"><div class="num">I</div><h3>Sail by the wind</h3><p>Trim your sails and steer to go upwind or downwind. A beam reach is fastest; a headwind slows you down. Your steam engine pushes through while the coal lasts.</p></div>
+      <div class="card"><div class="num">II</div><h3>Fire broadsides</h3><p>Pick a side, hold to aim and release to fire. Elevation and lead are set for you, so you can focus on sailing.</p></div>
+      <div class="card"><div class="num">III</div><h3>Build your ship</h3><p>Upgrade armor, sails, cannons, rudder and engine, and fit 9 kinds of outfits like swivel guns, mortars and a large boiler. Move up from sloop to ship of the line.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sea">
+  <div class="wrap">
+    <span class="eyebrow">Features</span>
+    <h2>Rivals to beat, goals every day.</h2>
+    <div class="rule"></div>
+    <div class="grid3">
+      <div class="card"><div class="num">Pirate rankings</div><h3>Duel 11 captains</h3><p>Challenge named captains in order for bounties and rank. Beat them all to start a new round. Losing costs nothing.</p></div>
+      <div class="card"><div class="num">Daily missions</div><h3>Three a day</h3><p>Sink ships, win duels, survive waves. Earn gold and experience.</p></div>
+      <div class="card"><div class="num">Captain levels</div><h3>Titles to earn</h3><p>Level up as you fight, earn new titles and a bonus each time.</p></div>
+      <div class="card"><div class="num">Medals</div><h3>18 medals</h3><p>Earned from your lifetime records. Some unlock special looks.</p></div>
+      <div class="card"><div class="num">Weekly rankings</div><h3>30 CPU captains</h3><p>Compete for a week of renown and collect rewards for your placing.</p></div>
+      <div class="card"><div class="num">Daily gift</div><h3>Gold at port</h3><p>Once a day, with a bonus for consecutive days.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="parch">
+  <div class="wrap">
+    <span class="eyebrow">Pricing</span>
+    <h2>Free to play to the end.<br>Join the Shiokaze Fleet Club for more.</h2>
+    <div class="rule"></div>
+    <div class="plans">
+      <div class="plan">
+        <h3>Free</h3>
+        <div class="amount">$0</div>
+        <ul>
+          <li>Every voyage, duel, mission and ranking</li>
+          <li>4 ships and 9 outfits</li>
+          <li>Daily gift of 30 gold</li>
+          <li>No ads</li>
+        </ul>
+      </div>
+      <div class="plan member">
+        <h3>Shiokaze Fleet Club</h3>
+        <div class="prices">
+          <div><span>Monthly</span><span><b>$7.99</b><small>1-week free trial</small></span></div>
+          <div><span>Yearly</span><span><b>$59.99</b><small>1-week free trial</small></span></div>
+        </div>
+        <ul>
+          <li>Double bounties from voyages and duels</li>
+          <li>20% off upgrades and outfits</li>
+          <li>Recover once per voyage</li>
+          <li>Daily gift of 150 gold</li>
+          <li>3 members-only ships</li>
+          <li>8 members-only looks for sails, hull and flag</li>
+          <li>Photo mode: frame any angle and save to Photos</li>
+        </ul>
+      </div>
+    </div>
+    <p class="price-note">Auto-renewing subscription. New subscribers get a 1-week free trial; cancel before it ends and you will not be charged. It renews automatically unless cancelled at least 24 hours before the end of the period. Prices shown are U.S. prices; other regions may differ.</p>
+  </div>
+</section>
+
+<section class="sea">
+  <div class="wrap">
+    <span class="eyebrow">Support</span>
+    <h2>Frequently asked questions</h2>
+    <div class="faq">
+      <details><summary>How do I restore my purchase?</summary><p>Open "Shipyard" (造船所) → "Members" (会員) and tap "Restore Purchases" (購入を復元).</p></details>
+      <details><summary>How do I cancel?</summary><p>Open the Settings app → your name → Subscriptions → SHIOKAZE. Deleting the app does not cancel the subscription.</p></details>
+      <details><summary>Can I finish the game without a subscription?</summary><p>Yes. All voyages, duels, missions and rankings are free. Membership adds earnings and cosmetic extras.</p></details>
+      <details><summary>Does the app send any data?</summary><p>No network traffic at all, except App Store purchase processing. Your progress stays on your iPhone.</p></details>
+      <details><summary>Is the game in English?</summary><p>Not yet. The in-game text is Japanese only for now. English support is planned for a future update.</p></details>
+    </div>
+    <div class="contact" style="margin-top:36px">
+      <h3 class="serif" style="font-size:20px;margin:0 0 8px">Contact</h3>
+      <p>Email: <a href="mailto:fumi.programming@gmail.com">fumi.programming@gmail.com</a></p>
+      <p class="muted">Replies may take a few days.</p>
+      <p style="margin-top:14px;font-size:14px"><a href="privacy.html#en">Privacy Policy</a></p>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="links">
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="privacy.html#en">Privacy Policy</a>
+      <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">利用規約 / Terms of Use</a>
+      <a href="mailto:fumi.programming@gmail.com">fumi.programming@gmail.com</a>
+      <a href="/">fumy98 のアプリ一覧</a>
+    </div>
+    <p>© 2026 fumy98</p>
+  </div>
+</footer>
+
+</body>
+</html>
